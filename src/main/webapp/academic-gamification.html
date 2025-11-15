@@ -12,67 +12,87 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f3f6fb 0%, #ffffff 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .header h1 {
-            color: #2b4a66;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .header p {
-            color: #666;
-            font-size: 1.1em;
+            color: #5a6c7d;
+            font-size: 1.15em;
+            font-weight: 500;
         }
 
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            gap: 12px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
             flex-wrap: wrap;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .tab-btn {
-            padding: 12px 25px;
-            background: #f0f0f0;
+            padding: 14px 28px;
+            background: rgba(255,255,255,0.2);
             border: 2px solid transparent;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1em;
-            transition: all 0.3s;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
+        .tabs { overflow-x: auto; }
+
+        .tab-btn { white-space: nowrap; }
+
         .tab-btn.active {
-            background: #2b4a66;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-color: #2b4a66;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
         }
 
         .tab-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
         .tab-content {
@@ -84,17 +104,32 @@
         }
 
         .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
         }
 
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .card.small { padding: 20px; }
+
         .card h2 {
-            color: #2b4a66;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            font-size: 1.9em;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }
 
         .form-group {
@@ -112,19 +147,25 @@
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 14px 16px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
             font-size: 1em;
             font-family: inherit;
+            background: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
         }
+
+        input[type="file"] { padding: 10px; }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #fa709a;
-            box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.1);
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
         }
 
         .form-row {
@@ -134,58 +175,98 @@
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 14px 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1em;
-            transition: all 0.3s;
-            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(250, 112, 154, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            font-weight: 700;
+            border: 2px solid rgba(102, 126, 234, 0.2);
         }
 
         .btn-secondary:hover {
-            background: #e0e0e0;
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #ffffff, #f7fafc);
-            color: #2b4a66;
-            padding: 25px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            backdrop-filter: blur(10px);
+            color: #1a202c;
+            padding: 32px 24px;
+            border-radius: 18px;
             text-align: center;
-            box-shadow: 0 6px 14px rgba(43, 74, 102, 0.07);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         }
 
         .stat-card h3 {
-            font-size: 2.5em;
-            margin-bottom: 8px;
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .stat-card p {
             font-size: 0.95em;
-            opacity: 0.95;
+            color: #4a5568;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .task-list {
@@ -193,15 +274,24 @@
         }
 
         .task-item {
-            background: #ffffff;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-left: 4px solid #2b4a66;
-            border-radius: 6px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 5px solid #667eea;
+            border-radius: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
+
+        .task-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .task-item .task-info { max-width: 75%; }
 
         .task-info {
             flex: 1;
@@ -221,39 +311,45 @@
 
         .task-priority {
             display: inline-block;
-            padding: 4px 10px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
+            font-size: 0.82em;
+            font-weight: 700;
             margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .priority-high {
-            background: #ffe6e6;
-            color: #b43a3a;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
         }
 
         .priority-medium {
-            background: #fff7e6;
-            color: #b36a2b;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
         }
 
         .priority-low {
-            background: #eaf6ea;
-            color: #2a7040;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
         }
 
         .pomodoro-timer {
             text-align: center;
-            padding: 40px 25px;
+            padding: 50px 30px;
         }
 
         .timer-display {
-            font-size: 4em;
-            font-weight: bold;
-            color: #fa709a;
-            margin: 30px 0;
+            font-size: 5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 40px 0;
             font-variant-numeric: tabular-nums;
+            letter-spacing: -2px;
         }
 
         .timer-controls {
@@ -271,26 +367,32 @@
         }
 
         .leaderboard-table th {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px;
+            padding: 18px;
             text-align: left;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9em;
         }
 
         .leaderboard-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 18px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
         }
 
         .leaderboard-table tr:hover {
-            background: #f9f9f9;
+            background: rgba(102, 126, 234, 0.05);
         }
 
         .rank {
-            font-weight: bold;
-            color: #fa709a;
-            font-size: 1.2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3em;
         }
 
         .medal {
@@ -299,63 +401,78 @@
         }
 
         .challenge-item {
-            background: #f9f9f9;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #fee140;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            padding: 24px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .challenge-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 1.1em;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 10px;
+            font-size: 1.15em;
         }
 
         .challenge-progress {
-            background: #e0e0e0;
-            height: 8px;
-            border-radius: 4px;
-            margin: 10px 0;
+            background: rgba(102, 126, 234, 0.15);
+            height: 10px;
+            border-radius: 8px;
+            margin: 12px 0;
             overflow: hidden;
         }
 
         .challenge-progress-bar {
-            background: linear-gradient(90deg, #fa709a, #fee140);
+            background: linear-gradient(90deg, #667eea, #764ba2);
             height: 100%;
             width: 0%;
-            transition: width 0.3s;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
         }
 
         .badge-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
         }
 
         .badge {
             text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            background: #f9f9f9;
-            transition: transform 0.3s;
+            padding: 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .badge:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
         }
 
         .badge-icon {
-            font-size: 0; /* icons removed */
+            font-size: 0;
             margin-bottom: 0;
         }
 
         .badge-name {
-            font-weight: 600;
-            color: #333;
-            font-size: 0.9em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 0.95em;
         }
 
         .empty-state {
@@ -363,6 +480,8 @@
             padding: 50px 20px;
             color: #999;
         }
+
+        .chip { display:inline-block; padding:6px 10px; border-radius:16px; background:#f1f5f9; color:#2b4a66; font-weight:600; margin-right:6px; }
 
         .empty-state-icon {
             font-size: 3em;
@@ -389,6 +508,22 @@
             .tab-btn {
                 width: 100%;
                 text-align: left;
+                padding: 10px 15px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .task-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .task-item .task-info {
+                max-width: 100%;
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
 
@@ -409,7 +544,122 @@
             margin-bottom: 15px;
             display: none;
         }
+
+        /* Toast Notification Styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+        }
+
+        .toast {
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95em;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-400px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .toast.removing {
+            animation: slideOut 0.3s ease-out;
+            animation-fill-mode: forwards;
+        }
+
+        .toast-success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .toast-error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        .toast-info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .toast-icon {
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .toast-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 1.3em;
+            line-height: 1;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .toast-close:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 480px) {
+            .toast-container {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: none;
+            }
+            .toast {
+                padding: 12px 14px;
+                font-size: 0.9em;
+            }
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -421,11 +671,12 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('tasks')">Công việc học tập</button>
-            <button class="tab-btn" onclick="switchTab('pomodoro')">Pomodoro Timer</button>
-            <button class="tab-btn" onclick="switchTab('challenges')">Thử thách</button>
-            <button class="tab-btn" onclick="switchTab('leaderboard')">Bảng xếp hạng</button>
-            <button class="tab-btn" onclick="switchTab('badges')">Huy hiệu</button>
+            <button class="tab-btn active" onclick="switchTab('tasks', event)">Công việc học tập</button>
+            <button class="tab-btn" onclick="switchTab('pomodoro', event)">Pomodoro Timer</button>
+            <button class="tab-btn" onclick="switchTab('challenges', event)">Thử thách</button>
+            <button class="tab-btn" onclick="switchTab('schedule', event)">Lịch học</button>
+            <button class="tab-btn" onclick="switchTab('leaderboard', event)">Bảng xếp hạng</button>
+            <button class="tab-btn" onclick="switchTab('badges', event)">Huy hiệu</button>
         </div>
 
         <!-- Tasks Tab -->
@@ -433,19 +684,19 @@
             <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3 id="statsTasksCount">0</h3>
+                    <h3 id="statsTasksCount" style="color:#fa709a;">0</h3>
                     <p>Công việc chưa làm</p>
                 </div>
                 <div class="stat-card">
-                    <h3 id="statsWorkload">0h</h3>
+                    <h3 id="statsWorkload" style="color:#fee140;">0h</h3>
                     <p>Tổng giờ cần thiết</p>
                 </div>
                 <div class="stat-card">
-                    <h3 id="statsTotalPoints">0</h3>
+                    <h3 id="statsTotalPoints" style="color:#2b4a66;">0</h3>
                     <p>Điểm toàn bộ</p>
                 </div>
                 <div class="stat-card">
-                    <h3 id="statsPomodorosToday">0</h3>
+                    <h3 id="statsPomodorosToday" style="color:#4a90e2;">0</h3>
                     <p>Pomodoro hôm nay</p>
                 </div>
             </div>
@@ -486,14 +737,17 @@
                 </form>
             </div>
 
-            <!-- Task List -->
+            <!-- Task List with Pagination -->
             <div class="card">
                 <h2>Danh sách công việc</h2>
-                <ul class="task-list" id="taskList">
-                    <div class="empty-state" id="taskEmptyState">
-                        <p>Không có công việc nào. Tạo công việc mới để bắt đầu!</p>
-                    </div>
-                </ul>
+                <ul class="task-list" id="taskList"></ul>
+                <div id="taskPaginationControls" style="margin-top:15px;display:flex;justify-content:center;gap:8px;align-items:center;">
+                    <button class="btn btn-secondary" onclick="goToFirstPage()" style="padding:8px 12px;font-size:0.9em;"><<</button>
+                    <button class="btn btn-secondary" onclick="goToPrevPage()" style="padding:8px 12px;font-size:0.9em;"><</button>
+                    <div style="min-width:100px;text-align:center;color:#666;font-size:0.9em;" id="pageIndicator"></div>
+                    <button class="btn btn-secondary" onclick="goToNextPage()" style="padding:8px 12px;font-size:0.9em;">></button>
+                    <button class="btn btn-secondary" onclick="goToLastPage()" style="padding:8px 12px;font-size:0.9em;">>></button>
+                </div>
             </div>
         </div>
 
@@ -501,10 +755,29 @@
         <div id="pomodoro" class="tab-content">
             <div class="card">
                 <h2>Pomodoro Timer</h2>
+                
+                <!-- Duration Selection -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block;margin-bottom:8px;color:#666;font-weight:600;">Chọn thời lượng:</label>
+                    <div style="display:flex;gap:10px;justify-content:center;">
+                        <button class="btn" onclick="setPomodoroDuration(25)" id="duration25" style="background:#667eea;color:white;border:2px solid #667eea;">25 phút</button>
+                        <button class="btn" onclick="setPomodoroDuration(45)" id="duration45" style="background:rgba(102,126,234,0.1);color:#667eea;border:2px solid #667eea;">45 phút</button>
+                        <button class="btn" onclick="setPomodoroDuration(60)" id="duration60" style="background:rgba(102,126,234,0.1);color:#667eea;border:2px solid #667eea;">60 phút</button>
+                    </div>
+                </div>
+                
+                <!-- Session Progress -->
+                <div id="sessionProgress" style="margin-bottom:20px;padding:15px;background:rgba(102,126,234,0.1);border-radius:12px;display:none;">
+                    <p style="margin:0;color:#667eea;font-weight:600;text-align:center;">
+                        Phiên: <span id="sessionsCompletedDisplay">0</span> / <span id="sessionsRequiredDisplay">0</span>
+                    </p>
+                    <p style="margin:5px 0 0 0;color:#666;font-size:0.9em;text-align:center;" id="currentScheduleDisplay"></p>
+                </div>
+                
                 <div class="pomodoro-timer">
                     <p style="color: #666; margin-bottom: 10px;">Thời gian còn lại</p>
                     <div class="timer-display" id="timerDisplay">25:00</div>
-                    <p style="color: #999; margin-bottom: 20px;">Làm việc tập trung 25 phút</p>
+                    <p style="color: #999; margin-bottom: 20px;" id="timerSubtext">Làm việc tập trung 25 phút</p>
                     
                     <div class="timer-controls">
                         <button class="btn btn-primary" onclick="startTimer()">Bắt đầu</button>
@@ -518,13 +791,13 @@
                 </div>
 
                 <div style="margin-top: 30px; text-align: center; color: #666;">
-                    <p>💡 Mẹo: Hoàn thành mỗi Pomodoro để nhận 10 điểm!</p>
+                    <p style="color:#667eea;font-weight:600;">Mẹo: Hoàn thành mỗi Pomodoro để nhận 10 điểm!</p>
                 </div>
             </div>
 
             <!-- Pomodoro Stats -->
             <div class="card">
-                <h2>📈 Thống kê Pomodoro</h2>
+                <h2>Thống kê Pomodoro</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <h3 id="pomodorosTodayStats">0</h3>
@@ -558,9 +831,86 @@
                 <h2>Thử thách đang thực hiện</h2>
                 <div id="activeChallengesList">
                     <div class="empty-state">
-                        <div class="empty-state-icon">😴</div>
+                        <div class="empty-state-icon" style="display:none;"></div>
                         <p>Bạn chưa tham gia thử thách nào. Hãy bắt đầu một thử thách!</p>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Tab -->
+        <!-- Schedule Tab -->
+        <div id="schedule" class="tab-content">
+            <div class="card">
+                <h2>Tải lên lịch thi</h2>
+                <p style="color:#666;margin-bottom:15px;">Tải lên file Excel/CSV chứa lịch thi của bạn. Định dạng: subject, date (YYYY-MM-DD), time (tùy chọn)</p>
+                <input type="file" id="examFile" accept=".csv,.xls,.xlsx">
+                <div style="margin-top:10px;">
+                    <button class="btn btn-primary" onclick="uploadExamSchedule()">Tải lên</button>
+                </div>
+                <div id="uploadResult" style="margin-top:10px;color:#2b4a66;"></div>
+            </div>
+
+            <div class="card">
+                <h2>Thời gian bận rộn</h2>
+                <p style="color:#666;margin-bottom:15px;">Thêm các khoảng thời gian bạn không rảnh (họp, làm việc, hoạt động cá nhân) để hệ thống tránh gợi ý lịch học trùng giờ.</p>
+                <div id="busySlotsContainer"></div>
+                <div style="margin-top:15px;display:flex;gap:10px;">
+                    <button class="btn btn-secondary" onclick="addBusySlotRow()" style="display:flex;align-items:center;gap:6px;">
+                        <span>+</span> Thêm khoảng bận
+                    </button>
+                    <button class="btn btn-primary" onclick="saveBusySlots()">Lưu thời gian bận</button>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <h2>Danh sách môn học</h2>
+                <p style="color:#666;margin-bottom:15px;">Chỉnh sửa số chương và giờ ước tính trên mỗi chương để tinh chỉnh gợi ý.</p>
+                <div id="subjectsContainer" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:15px;"></div>
+                <div style="margin-top:15px;">
+                    <button class="btn btn-primary" onclick="applySubjectEdits()">Áp dụng thay đổi</button>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <h2>Gợi ý lịch học</h2>
+                <div style="margin-bottom:15px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="requestSuggestions()">Tạo gợi ý lịch học</button>
+                    <div style="font-size:0.95em;color:#666">Chọn các gợi ý phù hợp và chấp nhận để thêm vào lịch học</div>
+                </div>
+                <div id="suggestionsContainer"></div>
+                <div id="suggestionsPagination" style="margin-top:15px;display:none;justify-content:center;gap:8px;align-items:center;">
+                    <button class="btn btn-secondary" onclick="goToFirstSuggestionsPage()" style="padding:8px 12px;font-size:0.9em;"><<</button>
+                    <button class="btn btn-secondary" onclick="goToPrevSuggestionsPage()" style="padding:8px 12px;font-size:0.9em;"><</button>
+                    <div style="min-width:100px;text-align:center;color:#666;font-size:0.9em;" id="suggestionsPageIndicator"></div>
+                    <button class="btn btn-secondary" onclick="goToNextSuggestionsPage()" style="padding:8px 12px;font-size:0.9em;">></button>
+                    <button class="btn btn-secondary" onclick="goToLastSuggestionsPage()" style="padding:8px 12px;font-size:0.9em;">>></button>
+                </div>
+            </div>
+
+            <!-- Accepted Schedule - Visual Timetable -->
+            <div class="card" id="acceptedScheduleCard" style="display:none;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                    <h2 style="margin:0;">Lịch học đã chấp nhận</h2>
+                    <button class="btn btn-secondary" onclick="clearAcceptedSchedule()" style="padding:6px 12px;font-size:0.85em;">Xóa toàn bộ</button>
+                </div>
+                <div style="margin-bottom:15px;font-size:0.95em;color:#666;">Thời khóa biểu của bạn - Click "Vào học" để đánh dấu hoàn thành</div>
+                <div id="timetableContainer"></div>
+            </div>
+
+            <!-- Progress Tracking -->
+            <div class="card" id="progressCard" style="display:none;">
+                <div id="progressContainer" style="margin-top:0;"></div>
+                <div id="progressPagination" style="margin-top:15px;display:none;justify-content:center;gap:8px;align-items:center;">
+                    <button class="btn btn-secondary" onclick="goToFirstProgressPage()" style="padding:8px 12px;font-size:0.9em;"><<</button>
+                    <button class="btn btn-secondary" onclick="goToPrevProgressPage()" style="padding:8px 12px;font-size:0.9em;"><</button>
+                    <div style="min-width:100px;text-align:center;color:#666;font-size:0.9em;" id="progressPageIndicator"></div>
+                    <button class="btn btn-secondary" onclick="goToNextProgressPage()" style="padding:8px 12px;font-size:0.9em;">></button>
+                    <button class="btn btn-secondary" onclick="goToLastProgressPage()" style="padding:8px 12px;font-size:0.9em;">>></button>
                 </div>
             </div>
         </div>
@@ -632,11 +982,41 @@
         const API_BASE = '/wellness-app/api';
         let currentUserId = new URLSearchParams(window.location.search).get('userId') || 1;
         let timerInterval = null;
-        let timeRemaining = 25 * 60;
+        let pomodoroDuration = 25; // minutes - can be 25, 45, or 60
+        let timeRemaining = 25 * 60; // seconds
+        let initialTime = 25 * 60; // track initial time for percentage calculation
         let isRunning = false;
+        let allTasks = [];
+        let currentTaskPage = 1;
+        const TASKS_PER_PAGE = 10;
+        let currentScheduleTaskPage = 1;
+        const SCHEDULE_TASKS_PER_PAGE = 8;
+        let currentSuggestionsPage = 1;
+        const SUGGESTIONS_PER_PAGE = 5;
+        let currentProgressPage = 1;
+        const PROGRESS_PER_PAGE = 5;
+        let allSuggestions = [];
+        let studySessions = {}; // { subjectName: [{ date, hours }, ...] }
+        let acceptedSchedule = []; // Array of accepted suggestions
+        
+        // Gamification state
+        let currentActiveTask = null;
+        let currentActiveScheduleItem = null; // Track schedule being studied
+        let sessionsCompleted = 0; // Track completed pomodoro sessions for current schedule
+        let sessionsRequired = 0; // Track required sessions based on suggestedHours
+        let totalPoints = 0;
+        let todayPomodoroCount = 0;
+        let activeChallenges = [
+            { id: 1, name: 'Focus Master', target: 5, current: 0, points: 50, type: 'pomodoro' },
+            { id: 2, name: 'Task Crusher', target: 10, current: 0, points: 100, type: 'task' },
+            { id: 3, name: 'Study Streak', target: 7, current: 0, points: 150, type: 'daily' }
+        ];
+        let earnedBadges = [];
 
-        // Tab switching
-        function switchTab(tabName) {
+        // Tab switching (accept event for reliable target)
+        function switchTab(tabName, evt) {
+            console.log('Switching to tab:', tabName);
+            
             // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
@@ -646,14 +1026,34 @@
             });
 
             // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+            const tabEl = document.getElementById(tabName);
+            if (tabEl) {
+                tabEl.classList.add('active');
+                console.log('Tab element found and activated:', tabName);
+            } else {
+                console.error('Tab element not found:', tabName);
+            }
+            
+            try {
+                const btnEl = evt && (evt.currentTarget || evt.target);
+                if (btnEl) btnEl.classList.add('active');
+            } catch (e) {
+                console.error('Error activating button:', e);
+            }
 
             // Load tab-specific data
-            if (tabName === 'leaderboard') {
-                loadLeaderboard();
-            } else if (tabName === 'challenges') {
-                loadChallenges();
+            try {
+                if (tabName === 'leaderboard') {
+                    loadLeaderboard();
+                } else if (tabName === 'challenges') {
+                    renderChallenges();
+                } else if (tabName === 'schedule') {
+                    loadScheduleTab();
+                } else if (tabName === 'badges') {
+                    renderBadges();
+                }
+            } catch (error) {
+                console.error('Error loading tab data:', error);
             }
         }
 
@@ -681,53 +1081,357 @@
             }
         }
 
-        // Load tasks
+        // Load tasks with pagination
         async function loadTasks() {
             try {
                 const res = await fetch(`${API_BASE}/academic/tasks/${currentUserId}`);
                 const data = await res.json();
                 
-                const taskList = document.getElementById('taskList');
-                taskList.innerHTML = '';
-                if (data.success && data.data && data.data.length > 0) {
-                    document.getElementById('statsTasksCount').textContent = data.data.length;
-                    data.data.forEach(task => {
-                        const li = document.createElement('li');
-                        li.className = 'task-item';
-                        li.innerHTML = `
-                            <div class="task-info">
-                                <div class="task-title">${task.title}</div>
-                                <div class="task-deadline">
-                                    Hạn: ${task.deadline ? new Date(task.deadline).toLocaleDateString('vi-VN') : '-'}
-                                    <span class="task-priority priority-${task.priority}">${task.priority.toUpperCase()}</span>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="color: #2b4a66; font-weight: 600;">${task.estimatedHours || 0}h</div>
-                                <div style="color: #999; font-size: 0.9em;">${task.status}</div>
-                            </div>
-                        `;
-                        taskList.appendChild(li);
-                    });
+                if (data.success && data.data && Array.isArray(data.data)) {
+                    allTasks = data.data;
                 } else {
-                    // show empty state
-                    taskList.innerHTML = `<div class="empty-state"><p>Không có công việc nào. Tạo công việc mới để bắt đầu!</p></div>`;
-                    document.getElementById('statsTasksCount').textContent = 0;
+                    const localTasks = JSON.parse(localStorage.getItem(`tasks_${currentUserId}`) || '[]');
+                    allTasks = localTasks.length > 0 ? localTasks : [];
                 }
+                
+                document.getElementById('statsTasksCount').textContent = allTasks.length;
+                updateStudySessionDropdown();
+                currentTaskPage = 1;
+                renderTasksPage();
             } catch (error) {
                 console.error('Error loading tasks:', error);
+                const localTasks = JSON.parse(localStorage.getItem(`tasks_${currentUserId}`) || '[]');
+                allTasks = localTasks.length > 0 ? localTasks : [];
+                renderTasksPage();
             }
+        }
+
+        function renderTasksPage() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+
+            if (!allTasks || allTasks.length === 0) {
+                taskList.innerHTML = `<div class="empty-state" style="padding:30px;"><p>Không có công việc nào. Tạo công việc mới để bắt đầu!</p></div>`;
+                document.getElementById('taskPaginationControls').style.display = 'none';
+                return;
+            }
+
+            // Sort by newest first (reverse chronological)
+            const sortedTasks = [...allTasks].sort((a, b) => {
+                const dateA = new Date(a.deadline || 0);
+                const dateB = new Date(b.deadline || 0);
+                return dateB - dateA;
+            });
+
+            const totalPages = Math.ceil(sortedTasks.length / TASKS_PER_PAGE);
+            const startIdx = (currentTaskPage - 1) * TASKS_PER_PAGE;
+            const endIdx = Math.min(startIdx + TASKS_PER_PAGE, sortedTasks.length);
+            const pageItems = sortedTasks.slice(startIdx, endIdx);
+
+            pageItems.forEach(task => {
+                const li = document.createElement('li');
+                li.className = 'task-item';
+                const isActive = currentActiveTask && currentActiveTask.id === task.id;
+                li.innerHTML = `
+                    <div class="task-info">
+                        <div class="task-title">${task.title} ${isActive ? '<span style="background:linear-gradient(135deg, #667eea, #764ba2);color:white;padding:2px 8px;border-radius:12px;font-size:0.75em;margin-left:8px;">ĐANG LÀM</span>' : ''}</div>
+                        <div class="task-deadline">
+                            Hạn: ${task.deadline ? new Date(task.deadline).toLocaleDateString('vi-VN') : '-'}
+                            <span class="task-priority priority-${task.priority}">${task.priority.toUpperCase()}</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right;display:flex;gap:8px;align-items:center;">
+                        <div>
+                            <div style="color: #2b4a66; font-weight: 600;">${task.estimatedHours || 0}h</div>
+                            <div style="color: #999; font-size: 0.9em;">${task.status}</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="startPomodoroWithTask('${task.id || task.title}', '${task.title}')" style="padding:8px 16px;font-size:0.85em;white-space:nowrap;">Bắt đầu</button>
+                    </div>
+                `;
+                taskList.appendChild(li);
+            });
+
+            document.getElementById('pageIndicator').textContent = `Trang ${currentTaskPage} / ${totalPages}`;
+            document.getElementById('taskPaginationControls').style.display = 'flex';
+        }
+
+        function goToFirstPage() {
+            currentTaskPage = 1;
+            renderTasksPage();
+        }
+        function goToLastPage() {
+            const maxPage = Math.ceil(allTasks.length / TASKS_PER_PAGE) || 1;
+            currentTaskPage = maxPage;
+            renderTasksPage();
+        }
+        function goToPrevPage() {
+            if (currentTaskPage > 1) {
+                currentTaskPage--;
+                renderTasksPage();
+            }
+        }
+        function goToNextPage() {
+            const maxPage = Math.ceil(allTasks.length / TASKS_PER_PAGE) || 1;
+            if (currentTaskPage < maxPage) {
+                currentTaskPage++;
+                renderTasksPage();
+            }
+        }
+
+        // Schedule Tasks Pagination
+        function goToFirstSchedulePage() {
+            currentScheduleTaskPage = 1;
+            renderScheduleTasksPage();
+        }
+        function goToLastSchedulePage() {
+            const maxPage = Math.ceil(allTasks.length / SCHEDULE_TASKS_PER_PAGE) || 1;
+            currentScheduleTaskPage = maxPage;
+            renderScheduleTasksPage();
+        }
+        function goToPrevSchedulePage() {
+            if (currentScheduleTaskPage > 1) {
+                currentScheduleTaskPage--;
+                renderScheduleTasksPage();
+            }
+        }
+        function goToNextSchedulePage() {
+            const maxPage = Math.ceil(allTasks.length / SCHEDULE_TASKS_PER_PAGE) || 1;
+            if (currentScheduleTaskPage < maxPage) {
+                currentScheduleTaskPage++;
+                renderScheduleTasksPage();
+            }
+        }
+
+        function renderScheduleTasksPage() {
+            const container = document.getElementById('scheduleTasksContainer');
+            if (!container) return; // Container doesn't exist in current UI
+            
+            container.innerHTML = '';
+
+            if (!allTasks || allTasks.length === 0) {
+                container.innerHTML = '<div class="empty-state" style="padding:20px;"><p>Không có công việc nào.</p></div>';
+                document.getElementById('scheduleTasksPagination').style.display = 'none';
+                return;
+            }
+
+            // Sort by newest first
+            const sortedTasks = [...allTasks].sort((a, b) => {
+                const dateA = new Date(a.deadline || 0);
+                const dateB = new Date(b.deadline || 0);
+                return dateB - dateA;
+            });
+
+            const totalPages = Math.ceil(sortedTasks.length / SCHEDULE_TASKS_PER_PAGE);
+            const startIdx = (currentScheduleTaskPage - 1) * SCHEDULE_TASKS_PER_PAGE;
+            const endIdx = Math.min(startIdx + SCHEDULE_TASKS_PER_PAGE, sortedTasks.length);
+            const pageItems = sortedTasks.slice(startIdx, endIdx);
+
+            pageItems.forEach((task, idx) => {
+                const taskCard = document.createElement('div');
+                taskCard.style.cssText = 'padding:12px;border:1px solid #e0e0e0;border-radius:8px;cursor:pointer;transition:all 0.2s;background:#fafbfc;';
+                taskCard.onmouseover = () => taskCard.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                taskCard.onmouseout = () => taskCard.style.boxShadow = 'none';
+                
+                const deadline = task.deadline ? new Date(task.deadline) : null;
+                const daysLeft = deadline ? Math.ceil((deadline - new Date()) / (1000 * 60 * 60 * 24)) : -1;
+                const deadlineText = deadline ? `${deadline.toLocaleDateString('vi-VN')} (${daysLeft > 0 ? daysLeft + ' ngày còn' : daysLeft === 0 ? 'Hôm nay' : 'Quá hạn'})` : '-';
+
+                taskCard.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div style="flex:1;">
+                            <div style="font-weight:600;color:#2b4a66;margin-bottom:4px;">${task.title}</div>
+                            <div style="font-size:0.85em;color:#666;">Hạn: ${deadlineText}</div>
+                            <div style="font-size:0.85em;color:#999;margin-top:2px;">${task.description || 'Không có mô tả'}</div>
+                        </div>
+                        <div style="text-align:right;min-width:80px;margin-left:10px;">
+                            <div style="background:linear-gradient(135deg, #fa709a 0%, #fee140 100%);color:white;padding:6px 10px;border-radius:6px;font-weight:600;font-size:0.9em;">${task.estimatedHours}h</div>
+                            <div style="font-size:0.8em;color:#999;margin-top:4px;"><span class="task-priority priority-${task.priority}">${task.priority.toUpperCase()}</span></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:8px;padding-top:8px;border-top:1px solid #e8e8e8;">
+                        <button class="btn btn-primary" onclick="markTaskAsStudying('${task.id || idx}')" style="padding:6px 12px;font-size:0.85em;margin-right:8px;">Bắt đầu học</button>
+                        <button class="btn btn-secondary" onclick="markTaskCompleted('${task.id || idx}')" style="padding:6px 12px;font-size:0.85em;">Hoàn thành</button>
+                    </div>
+                `;
+                container.appendChild(taskCard);
+            });
+
+            document.getElementById('schedulePageIndicator').textContent = `Trang ${currentScheduleTaskPage} / ${totalPages}`;
+            document.getElementById('scheduleTasksPagination').style.display = 'flex';
+        }
+
+        function markTaskAsStudying(taskId) {
+            // Open study session modal
+            const task = allTasks.find(t => (t.id || allTasks.indexOf(t)) === taskId);
+            if (task) {
+                document.getElementById('studySubject').value = task.title || task.subject || '';
+                document.getElementById('studyHours').focus();
+                showMessage(`Bắt đầu học: ${task.title}. Nhập số giờ và click "Thêm".`, 'success');
+            }
+        }
+
+        function markTaskCompleted(taskId) {
+            const task = allTasks.find(t => (t.id || allTasks.indexOf(t)) === taskId);
+            if (task) {
+                task.status = 'completed';
+                showMessage(`Đánh dấu hoàn thành: ${task.title}`, 'success');
+                renderScheduleTasksPage();
+            }
+        }
+
+        function openLearningSession(subject, date, suggestedHours) {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;';
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = 'background:white;border-radius:12px;padding:30px;max-width:500px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,0.2);';
+            
+            const formDate = new Date(date).toLocaleDateString('vi-VN');
+            modalContent.innerHTML = `
+                <div style="margin-bottom:20px;">
+                    <h3 style="color:#667eea;margin-bottom:10px;font-weight:700;">Bắt đầu phiên học</h3>
+                    <div style="color:#666;">
+                        <div style="margin-bottom:8px;"><strong>Môn:</strong> ${subject}</div>
+                        <div style="margin-bottom:8px;"><strong>Ngày:</strong> ${formDate}</div>
+                        <div><strong>Giờ đề xuất:</strong> ${suggestedHours.toFixed(1)} giờ</div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom:15px;">
+                    <label style="display:block;margin-bottom:5px;font-weight:600;color:#333;">Thời gian học thực tế (giờ):</label>
+                    <input type="number" id="learnHours" min="0.5" step="0.5" value="${suggestedHours.toFixed(1)}" style="width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:1em;">
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <label style="display:block;margin-bottom:5px;font-weight:600;color:#333;">Ghi chú:</label>
+                    <textarea id="learnNotes" placeholder="Ghi chú về buổi học..." style="width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:1em;min-height:80px;font-family:inherit;"></textarea>
+                </div>
+
+                <div style="display:flex;gap:10px;">
+                    <button class="btn btn-primary" onclick="saveLearningSession('${subject}', '${date}', document.getElementById('learnHours').value, document.getElementById('learnNotes').value)" style="flex:1;">💾 Lưu phiên học</button>
+                    <button class="btn btn-secondary" onclick="document.body.removeChild(this.closest('div').parentElement)" style="flex:0.3;">Đóng</button>
+                </div>
+            `;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            };
+        }
+
+        function saveLearningSession(subject, date, hours, notes) {
+            hours = parseFloat(hours);
+            if (isNaN(hours) || hours <= 0) {
+                showMessage('Vui lòng nhập số giờ hợp lệ', 'error');
+                return;
+            }
+            
+            if (!studySessions[subject]) studySessions[subject] = [];
+            studySessions[subject].push({ 
+                date: new Date(date).toLocaleDateString('vi-VN'), 
+                hours, 
+                notes,
+                scheduledDate: date
+            });
+            
+            saveStudySessionsToStorage();
+            
+            // Close modal
+            const modal = document.querySelector('div[style*="z-index:10000"]');
+            if (modal && modal.parentElement === document.body) {
+                document.body.removeChild(modal);
+            }
+            
+            showMessage(`Đã lưu ${hours}h học ${subject}`, 'success');
+            renderStudySessions();
         }
 
         // Create task
         async function createTask(event) {
             event.preventDefault();
 
-            const title = document.getElementById('taskTitle').value;
-            const description = document.getElementById('taskDescription').value;
+            const title = document.getElementById('taskTitle').value.trim();
+            const description = document.getElementById('taskDescription').value.trim();
             const deadline = document.getElementById('taskDeadline').value;
             const priority = document.getElementById('taskPriority').value;
             const estimatedHours = parseInt(document.getElementById('taskHours').value);
+
+            // Validation: Title
+            if (!title) {
+                showMessage('Vui lòng nhập tên công việc', 'error');
+                return;
+            }
+            if (title.length < 3) {
+                showMessage('Tên công việc phải có ít nhất 3 ký tự', 'error');
+                return;
+            }
+            if (title.length > 100) {
+                showMessage('Tên công việc không được vượt quá 100 ký tự', 'error');
+                return;
+            }
+            
+            // Validation: Description
+            if (description && description.length > 500) {
+                showMessage('Mô tả không được vượt quá 500 ký tự', 'error');
+                return;
+            }
+            
+            // Validation: Deadline
+            if (!deadline) {
+                showMessage('Vui lòng chọn ngày hạn chót', 'error');
+                return;
+            }
+            const deadlineDate = new Date(deadline);
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            today.setHours(0, 0, 0, 0);
+            
+            // Validation: Year must be >= current year
+            if (deadlineDate.getFullYear() < currentYear) {
+                showMessage(`Năm phải từ ${currentYear} trở đi`, 'error');
+                return;
+            }
+            
+            if (deadlineDate < today) {
+                showMessage('Ngày hạn chót không được là ngày quá khứ', 'error');
+                return;
+            }
+            const maxDate = new Date();
+            maxDate.setFullYear(maxDate.getFullYear() + 1);
+            if (deadlineDate > maxDate) {
+                showMessage('Ngày hạn chót không được quá 1 năm', 'error');
+                return;
+            }
+            
+            // Validation: Hours
+            if (isNaN(estimatedHours) || estimatedHours <= 0) {
+                showMessage('Vui lòng nhập số giờ hợp lệ (> 0)', 'error');
+                return;
+            }
+            if (estimatedHours > 1000) {
+                showMessage('Số giờ ước tính không được vượt quá 1000h', 'error');
+                return;
+            }
+            
+            // Validation: Priority
+            if (!['low', 'medium', 'high'].includes(priority)) {
+                showMessage('Độ ưu tiên không hợp lệ', 'error');
+                return;
+            }
+            
+            // Validation: Check if deadline conflicts with exam schedule
+            const conflictingSchedule = acceptedSchedule.find(s => s.date === deadline);
+            if (conflictingSchedule) {
+                const confirm = window.confirm(
+                    `Ngày ${new Date(deadline).toLocaleDateString('vi-VN')} đã có lịch thi môn ${conflictingSchedule.subject}.\n` +
+                    `Bạn có chắc muốn tạo công việc vào ngày này?`
+                );
+                if (!confirm) return;
+            }
 
             try {
                 const res = await fetch(`${API_BASE}/academic/tasks`, {
@@ -755,28 +1459,123 @@
                     showMessage(data.message || 'Lỗi khi tạo công việc', 'error');
                 }
             } catch (error) {
-                showMessage('Lỗi: ' + error.message, 'error');
+                console.error('Task create error:', error);
+                showMessage('Lỗi kết nối: ' + error.message + '. Công việc sẽ được lưu cục bộ.', 'error');
+                // Fallback: save to localStorage
+                saveTaskLocally({ title, description, deadline, priority, estimatedHours });
             }
         }
 
+        function saveTaskLocally(task) {
+            let localTasks = JSON.parse(localStorage.getItem(`tasks_${currentUserId}`) || '[]');
+            task.id = 'local_' + Date.now();
+            task.status = 'pending';
+            localTasks.push(task);
+            localStorage.setItem(`tasks_${currentUserId}`, JSON.stringify(localTasks));
+            showMessage('Công việc được lưu cục bộ. Hãy tải lại trang.', 'success');
+        }
+        
+        // Set Pomodoro Duration
+        function setPomodoroDuration(minutes) {
+            if (isRunning) {
+                showToast('Vui lòng dừng timer trước khi thay đổi thời lượng', 'error');
+                return;
+            }
+            
+            pomodoroDuration = minutes;
+            timeRemaining = minutes * 60;
+            initialTime = minutes * 60;
+            updateTimerDisplay();
+            
+            // Update UI
+            document.getElementById('timerSubtext').textContent = `Làm việc tập trung ${minutes} phút`;
+            
+            // Update button styles
+            ['duration25', 'duration45', 'duration60'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (id === `duration${minutes}`) {
+                    btn.style.background = '#667eea';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.background = 'rgba(102,126,234,0.1)';
+                    btn.style.color = '#667eea';
+                }
+            });
+            
+            // Recalculate sessions required if schedule is active
+            if (currentActiveScheduleItem) {
+                calculateSessionsRequired();
+            }
+            
+            showToast(`Đã đặt thời lượng: ${minutes} phút`, 'success');
+        }
+        
+        // Calculate sessions required based on schedule hours
+        function calculateSessionsRequired() {
+            if (currentActiveScheduleItem && currentActiveScheduleItem.suggestedHours) {
+                const hours = currentActiveScheduleItem.suggestedHours;
+                const sessionHours = pomodoroDuration / 60; // convert minutes to hours
+                sessionsRequired = Math.ceil(hours / sessionHours);
+                updateSessionProgress();
+            }
+        }
+        
+        // Update session progress display
+        function updateSessionProgress() {
+            const progressDiv = document.getElementById('sessionProgress');
+            if (currentActiveScheduleItem) {
+                progressDiv.style.display = 'block';
+                document.getElementById('sessionsCompletedDisplay').textContent = sessionsCompleted;
+                document.getElementById('sessionsRequiredDisplay').textContent = sessionsRequired;
+                document.getElementById('currentScheduleDisplay').textContent = 
+                    `Đang học: ${currentActiveScheduleItem.subject} (${currentActiveScheduleItem.suggestedHours || 0}h)`;
+            } else {
+                progressDiv.style.display = 'none';
+            }
+        }
+
+        // Start Pomodoro with specific task
+        function startPomodoroWithTask(taskId, taskTitle) {
+            const task = allTasks.find(t => (t.id || t.title) === taskId);
+            if (task) {
+                currentActiveTask = task;
+                showToast(`Bắt đầu Pomodoro cho: ${taskTitle}`, 'success');
+                switchTab('pomodoro', { target: document.querySelector('.tab-btn:nth-child(2)') });
+                renderTasksPage(); // Refresh to show active state
+                // Auto start timer
+                setTimeout(() => startTimer(), 500);
+            }
+        }
+        
         // Pomodoro Timer
         function startTimer() {
+            // Validation: Check if time remaining is valid
+            if (timeRemaining <= 0) {
+                showToast('Vui lòng thiết lập lại timer trước khi bắt đầu', 'error');
+                resetTimer();
+                return;
+            }
+            
             if (!isRunning && timeRemaining > 0) {
                 isRunning = true;
-                timerInterval = setInterval(() => {
-                    timeRemaining--;
-                    updateTimerDisplay();
-                    if (timeRemaining <= 0) {
+                timerInterval = setInterval(function() {
+                    if (timeRemaining > 0) {
+                        timeRemaining--;
+                        updateTimerDisplay();
+                    } else {
                         pauseTimer();
-                        alert('✅ Phiên Pomodoro hoàn thành! Hãy kiểm tra để nhận điểm.');
+                        showMessage('Phiên Pomodoro hoàn thành! Hãy kiểm tra để nhận điểm.', 'success');
                     }
                 }, 1000);
             }
         }
 
         function pauseTimer() {
-            isRunning = false;
-            clearInterval(timerInterval);
+            if (isRunning) {
+                isRunning = false;
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = null;
+            }
         }
 
         function resetTimer() {
@@ -794,49 +1593,216 @@
 
         // Complete Pomodoro
         async function completePomodoro() {
-            // This would need a session ID in production
-            showMessage('✅ Phiên Pomodoro ghi nhận! +10 điểm', 'success');
-            loadInitialData();
+            // Validation: Must have started a session
+            if (!timerInterval && timeRemaining === initialTime) {
+                showToast('Vui lòng bắt đầu Pomodoro trước khi hoàn thành', 'error');
+                return;
+            }
+            
+            // Validation: Should complete full session (or at least 80%)
+            const percentComplete = ((initialTime - timeRemaining) / initialTime) * 100;
+            if (percentComplete < 80) {
+                const confirm = window.confirm(
+                    `Bạn mới hoàn thành ${Math.round(percentComplete)}% phiên Pomodoro. ` +
+                    `Bạn có chắc muốn kết thúc sớm? Điểm thưởng có thể bị giảm.`
+                );
+                if (!confirm) return;
+            }
+            
+            // Award points
+            const pointsEarned = 10;
+            totalPoints += pointsEarned;
+            todayPomodoroCount++;
+            
+            // Update challenges
+            updateChallengeProgress('pomodoro', 1);
+            
+            // Update task progress if active
+            if (currentActiveTask) {
+                const hoursCompleted = 0.5; // 25 min = 0.5h
+                if (!currentActiveTask.hoursCompleted) currentActiveTask.hoursCompleted = 0;
+                currentActiveTask.hoursCompleted += hoursCompleted;
+                
+                // Save task progress
+                saveTaskLocally(currentActiveTask);
+                
+                // Check if task is complete
+                if (currentActiveTask.hoursCompleted >= currentActiveTask.estimatedHours) {
+                    currentActiveTask.status = 'completed';
+                    updateChallengeProgress('task', 1);
+                    showToast(`Hoàn thành task: ${currentActiveTask.title}! +20 điểm bonus`, 'success');
+                    totalPoints += 20;
+                    
+                    // If this task is from schedule, mark schedule as completed
+                    if (currentActiveTask.scheduleRef && currentActiveScheduleItem) {
+                        const [subject, date] = currentActiveTask.scheduleRef.split('_');
+                        markScheduleAsCompleted(subject, date);
+                    }
+                    
+                    currentActiveTask = null;
+                    currentActiveScheduleItem = null;
+                }
+            }
+            
+            // Check badges
+            checkAndAwardBadges();
+            
+            // Update UI
+            document.getElementById('statsTotalPoints').textContent = totalPoints;
+            document.getElementById('statsPomodorosToday').textContent = todayPomodoroCount;
+            document.getElementById('pomodorosTodayStats').textContent = todayPomodoroCount;
+            document.getElementById('pomodorosPointsStats').textContent = totalPoints;
+            
+            showToast(`Phiên Pomodoro hoàn thành! +${pointsEarned} điểm`, 'success');
+            
+            // Refresh all related tabs
+            loadTasks();
+            renderChallenges();
+            loadLeaderboard();
+            
+            // Save progress
+            saveGamificationState();
+            
+            // Reset timer
+            resetTimer();
         }
 
+        // Update challenge progress
+        function updateChallengeProgress(type, amount) {
+            activeChallenges.forEach(challenge => {
+                if (challenge.type === type) {
+                    challenge.current += amount;
+                    if (challenge.current >= challenge.target && !challenge.completed) {
+                        challenge.completed = true;
+                        totalPoints += challenge.points;
+                        showToast(`Hoàn thành thử thách: ${challenge.name}! +${challenge.points} điểm`, 'success');
+                        checkAndAwardBadges();
+                        saveGamificationState();
+                    }
+                }
+            });
+        }
+        
+        // Check and award badges
+        function checkAndAwardBadges() {
+            // Focus Master: 20 pomodoros
+            if (todayPomodoroCount >= 20 && !earnedBadges.includes('focus_master')) {
+                earnedBadges.push('focus_master');
+                showToast('Nhận huy hiệu: Focus Master!', 'success');
+            }
+            
+            // Task Crusher: 10 completed tasks
+            const completedTasks = allTasks.filter(t => t.status === 'completed').length;
+            if (completedTasks >= 10 && !earnedBadges.includes('task_crusher')) {
+                earnedBadges.push('task_crusher');
+                showToast('Nhận huy hiệu: Task Crusher!', 'success');
+                saveGamificationState();
+            }
+            
+            // Update badges display
+            renderBadges();
+        }
+        
+        // Render challenges
+        function renderChallenges() {
+            const container = document.getElementById('challengesList');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            activeChallenges.forEach(challenge => {
+                const progress = Math.min(100, (challenge.current / challenge.target) * 100);
+                const item = document.createElement('div');
+                item.className = 'challenge-item';
+                item.innerHTML = `
+                    <div class="challenge-title">${challenge.name} ${challenge.completed ? '<span style="color:#4CAF50;font-weight:700;">HOÀN THÀNH</span>' : ''}</div>
+                    <div style="color:#666;font-size:0.9em;margin-bottom:8px;">
+                        Tiến độ: ${challenge.current}/${challenge.target} | Phần thưởng: ${challenge.points} điểm
+                    </div>
+                    <div class="challenge-progress">
+                        <div class="challenge-progress-bar" style="width:${progress}%"></div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+        
+        // Render badges
+        function renderBadges() {
+            const container = document.getElementById('badgesContainer');
+            if (!container) return;
+            
+            const allBadges = [
+                { id: 'focus_master', name: 'Focus Master', desc: 'Hoàn thành 20 Pomodoro' },
+                { id: 'task_crusher', name: 'Task Crusher', desc: 'Hoàn thành 10 công việc' },
+                { id: 'streak_master', name: 'Streak Master', desc: 'Học liên tục 7 ngày' }
+            ];
+            
+            container.innerHTML = '';
+            allBadges.forEach(badge => {
+                const earned = earnedBadges.includes(badge.id);
+                const div = document.createElement('div');
+                div.className = 'badge';
+                div.style.opacity = earned ? '1' : '0.4';
+                div.innerHTML = `
+                    <div class="badge-icon"></div>
+                    <div class="badge-name">${badge.name}</div>
+                    <div style="font-size:0.8em;color:#666;margin-top:4px;">${badge.desc}</div>
+                    ${earned ? '<div style="color:#4CAF50;font-weight:700;margin-top:4px;font-size:0.85em;">ĐÃ ĐẠT</div>' : ''}
+                `;
+                container.appendChild(div);
+            });
+        }
+        
         // Load leaderboard
         async function loadLeaderboard() {
             const rows = [];
-            for (let i = 1; i <= 5; i++) {
-                const points = Math.floor(Math.random() * 500) + 100;
-                const medal = i === 1 ? '🥇' : i === 2 ? '🥈' : i === 3 ? '🥉' : '';
-                rows.push(`
-                    <tr>
-                        <td class="rank">${medal} #${i}</td>
-                        <td>Người dùng ${i}</td>
-                        <td style="font-weight: 600; color: #fa709a;">${points} điểm</td>
-                    </tr>
-                `);
+            
+            // Add current user
+            rows.push({
+                rank: 1,
+                username: 'Bạn',
+                points: totalPoints,
+                isCurrentUser: true
+            });
+            
+            // Add sample users
+            for (let i = 2; i <= 5; i++) {
+                const points = Math.max(0, totalPoints - Math.floor(Math.random() * 100) - 10);
+                rows.push({
+                    rank: i,
+                    username: 'User' + i,
+                    points,
+                    isCurrentUser: false
+                });
             }
-            document.getElementById('leaderboardBody').innerHTML = rows.join('');
+            
+            // Sort by points descending
+            rows.sort((a, b) => b.points - a.points);
+            
+            // Update ranks
+            rows.forEach((row, idx) => row.rank = idx + 1);
+            
+            // Render HTML
+            const html = rows.map(row => {
+                const rankBadge = row.rank === 1 ? '<span style="color: #ffd700;">★</span>' : 
+                                 row.rank === 2 ? '<span style="color: #c0c0c0;">★</span>' : 
+                                 row.rank === 3 ? '<span style="color: #cd7f32;">★</span>' : '';
+                const userBadge = row.isCurrentUser ? '<span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; margin-left: 8px;">BẠN</span>' : '';
+                const rowStyle = row.isCurrentUser ? 'background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); font-weight: 600;' : '';
+                
+                return `
+                    <tr style="${rowStyle}">
+                        <td class="rank">${rankBadge} #${row.rank}</td>
+                        <td>${row.username}${userBadge}</td>
+                        <td style="font-weight: 600; color: #fa709a;">${row.points} điểm</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            document.getElementById('leaderboardBody').innerHTML = html;
         }
 
-        // Load challenges
-        async function loadChallenges() {
-            const challenges = [
-                { title: '🎯 Pomodoro Weekly', description: 'Hoàn thành 10 phiên Pomodoro', progress: 6 },
-                { title: '💪 Streak Master', description: 'Check-in 5 ngày liên tiếp', progress: 3 },
-                { title: '🌟 Task Warrior', description: 'Hoàn thành 5 công việc', progress: 2 }
-            ];
 
-            const html = challenges.map(c => `
-                <div class="challenge-item">
-                    <div class="challenge-title">${c.title}</div>
-                    <div>${c.description}</div>
-                    <div class="challenge-progress">
-                        <div class="challenge-progress-bar" style="width: ${(c.progress / 10) * 100}%"></div>
-                    </div>
-                    <div style="text-align: right; color: #666; font-size: 0.9em;">${c.progress}/10</div>
-                </div>
-            `).join('');
-
-            document.getElementById('challengesList').innerHTML = html;
-        }
 
         // Show message
         function showMessage(text, type) {
@@ -844,13 +1810,1454 @@
             el.textContent = text;
             el.style.display = 'block';
             setTimeout(() => el.style.display = 'none', 3000);
+            // Also show toast notification
+            showToast(text, type);
+        }
+
+        // Show Toast Notification
+        function showToast(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            
+            const icons = {
+                success: '',
+                error: '✕',
+                info: 'ℹ'
+            };
+            
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || '•'}</span>
+                <span>${message}</span>
+                <button class="toast-close" onclick="this.closest('.toast').remove()">×</button>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Auto remove after duration
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.classList.add('removing');
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, duration);
+        }
+
+        // Mark suggestion accepted/rejected
+        function acceptSuggestion(idx) {
+            const el = document.querySelector(`[data-suggestion-index='${idx}']`);
+            if (!el) return;
+            
+            const suggestion = allSuggestions[idx];
+            if (!suggestion) return;
+            
+            // Validation: Check year >= current year
+            const suggestionDate = new Date(suggestion.date);
+            const currentYear = new Date().getFullYear();
+            if (suggestionDate.getFullYear() < currentYear) {
+                showToast(`Năm phải từ ${currentYear} trở đi. Vui lòng kiểm tra lại ngày thi.`, 'error');
+                return;
+            }
+            
+            // Validation: Check if date conflicts with existing tasks
+            const conflictingTask = allTasks.find(t => t.deadline === suggestion.date && t.status !== 'completed');
+            if (conflictingTask) {
+                const confirm = window.confirm(
+                    `Ngày ${suggestionDate.toLocaleDateString('vi-VN')} đã có công việc: "${conflictingTask.title}".\n` +
+                    `Bạn có chắc muốn thêm lịch thi ${suggestion.subject} vào ngày này?`
+                );
+                if (!confirm) return;
+            }
+            
+            // Auto-generate time slots (7:00 - 21:00)
+            if (!suggestion.suggestedSlots || suggestion.suggestedSlots.length === 0) {
+                const hours = suggestion.suggestedHours || 2;
+                const startHour = 7;
+                const endHour = Math.min(21, startHour + Math.ceil(hours));
+                suggestion.suggestedSlots = [{
+                    start: `${String(startHour).padStart(2, '0')}:00`,
+                    end: `${String(endHour).padStart(2, '0')}:00`
+                }];
+                suggestion.time = `${String(startHour).padStart(2, '0')}:00-${String(endHour).padStart(2, '0')}:00`;
+            }
+            
+            // Add to accepted schedule
+            if (!acceptedSchedule.find(s => s.subject === suggestion.subject && s.date === suggestion.date)) {
+                acceptedSchedule.push({...suggestion, acceptedAt: new Date().toISOString()});
+                saveAcceptedSchedule();
+                showToast('Đã thêm vào lịch học: ' + suggestion.subject + ' - ' + suggestion.date, 'success');
+            }
+            
+            el.querySelector('.suggest-action-accept').disabled = true;
+            el.querySelector('.suggest-action-reject').disabled = false;
+            el.style.border = '2px solid #2b4a66';
+            el.style.background = '#eefaf6';
+            const status = el.querySelector('.suggest-status');
+            if (status) status.textContent = 'Đã thêm';
+            
+            // Render timetable
+            renderTimetable();
+            renderProgress(Object.keys(subjectMeta), buildMatrix());
+        }
+
+        function rejectSuggestion(idx) {
+            const el = document.querySelector(`[data-suggestion-index='${idx}']`);
+            if (!el) return;
+            
+            const suggestion = allSuggestions[idx];
+            if (!suggestion) return;
+            
+            // Remove from accepted schedule if exists
+            acceptedSchedule = acceptedSchedule.filter(s => !(s.subject === suggestion.subject && s.date === suggestion.date));
+            saveAcceptedSchedule();
+            
+            el.querySelector('.suggest-action-reject').disabled = true;
+            el.querySelector('.suggest-action-accept').disabled = false;
+            el.style.border = '2px solid #e0e0e0';
+            el.style.background = '#fff5f5';
+            const status = el.querySelector('.suggest-status');
+            if (status) status.textContent = '✕ Bỏ qua';
+            
+            // Re-render
+            renderTimetable();
+            renderProgress(Object.keys(subjectMeta), buildMatrix());
+        }
+        
+        function saveAcceptedSchedule() {
+            localStorage.setItem(`acceptedSchedule_${currentUserId}`, JSON.stringify(acceptedSchedule));
+        }
+        
+        function loadAcceptedSchedule() {
+            const stored = localStorage.getItem(`acceptedSchedule_${currentUserId}`);
+            if (stored) {
+                try {
+                    acceptedSchedule = JSON.parse(stored);
+                    if (acceptedSchedule.length > 0) {
+                        renderTimetable();
+                        renderProgress(Object.keys(subjectMeta), buildMatrix());
+                    }
+                } catch (e) {
+                    acceptedSchedule = [];
+                }
+            }
+        }
+        
+        function clearAcceptedSchedule() {
+            if (confirm('Bạn có chắc muốn xóa toàn bộ lịch học đã chấp nhận?')) {
+                acceptedSchedule = [];
+                saveAcceptedSchedule();
+                renderTimetable();
+                renderProgress(Object.keys(subjectMeta), buildMatrix());
+                showToast('Đã xóa toàn bộ lịch học', 'info');
+            }
+        }
+        
+        // Start studying from schedule - creates task and starts Pomodoro
+        function startStudyingFromSchedule(subject, date) {
+            const scheduleItem = acceptedSchedule.find(s => s.subject === subject && s.date === date);
+            if (!scheduleItem) {
+                showToast('Không tìm thấy lịch học này', 'error');
+                return;
+            }
+            
+            // Validation: Already completed
+            if (scheduleItem.completed) {
+                showToast('Buổi học này đã hoàn thành!', 'info');
+                return;
+            }
+            
+            // Validation: Already in progress
+            if (scheduleItem.inProgress) {
+                showToast('Bạn đang học buổi này rồi!', 'info');
+                return;
+            }
+            
+            // Validation: Cannot start if another schedule is in progress
+            const otherInProgress = acceptedSchedule.find(s => 
+                s.inProgress && (s.subject !== subject || s.date !== date)
+            );
+            if (otherInProgress) {
+                showToast(`Bạn đang học ${otherInProgress.subject}. Vui lòng hoàn thành trước!`, 'error');
+                return;
+            }
+            
+            // Validation: Check if already studied this subject recently (within 7 days)
+            const recentStudy = acceptedSchedule.find(s => 
+                s.subject === subject && 
+                s.completed && 
+                s.completedAt &&
+                (new Date() - new Date(s.completedAt)) < 7 * 24 * 60 * 60 * 1000 && // within 7 days
+                s.date !== date // not the same schedule item
+            );
+            if (recentStudy) {
+                const daysSinceStudy = Math.floor((new Date() - new Date(recentStudy.completedAt)) / (1000 * 60 * 60 * 24));
+                const confirm = window.confirm(
+                    `Bạn đã học ${subject} cách đây ${daysSinceStudy} ngày (${new Date(recentStudy.completedAt).toLocaleDateString('vi-VN')}). ` +
+                    `Bạn có chắc muốn học lại ngay bây giờ?`
+                );
+                if (!confirm) return;
+            }
+            
+            // Validation: Check schedule date (optional - can study early)
+            const scheduleDate = new Date(date);
+            const today = new Date();
+            const daysDiff = Math.floor((scheduleDate - today) / (1000 * 60 * 60 * 24));
+            if (daysDiff > 7) {
+                const confirm = window.confirm(
+                    `Buổi học này dự kiến vào ${scheduleDate.toLocaleDateString('vi-VN')} (${daysDiff} ngày nữa). ` +
+                    `Bạn có muốn học sớm không?`
+                );
+                if (!confirm) return;
+            }
+            
+            // Mark as in-progress (not completed yet)
+            scheduleItem.inProgress = true;
+            scheduleItem.startedAt = new Date().toISOString();
+            
+            // Create or find existing task for this schedule
+            const hours = scheduleItem.suggestedHours || 2;
+            let task = allTasks.find(t => t.scheduleRef === `${subject}_${date}`);
+            
+            if (!task) {
+                task = {
+                    id: Date.now(),
+                    title: `Học ${subject}`,
+                    subject: subject,
+                    description: `Ôn tập ${subject} theo lịch học ngày ${date}`,
+                    estimatedHours: hours,
+                    hoursCompleted: 0,
+                    deadline: date,
+                    priority: 'high',
+                    status: 'in-progress',
+                    scheduleRef: `${subject}_${date}` // Link back to schedule
+                };
+                allTasks.push(task);
+                saveTaskLocally(task);
+            } else {
+                task.status = 'in-progress';
+                saveTaskLocally(task);
+            }
+            
+            // Start Pomodoro with this task
+            currentActiveTask = task;
+            currentActiveScheduleItem = scheduleItem; // Track schedule item
+            sessionsCompleted = 0; // Reset session counter
+            
+            // Calculate required sessions based on pomodoro duration
+            calculateSessionsRequired();
+            
+            // Update UI - show toast notification
+            showToast(`Bắt đầu học ${subject}! Chuyển sang Pomodoro... (${sessionsRequired} phiên)`, 'success');
+            
+            // Switch to Pomodoro tab and auto-start
+            switchTab('pomodoro', null);
+            
+            // Update session progress display
+            updateSessionProgress();
+            
+            // Auto-start timer after 500ms
+            setTimeout(() => {
+                if (!timerInterval) {
+                    startTimer();
+                }
+            }, 500);
+            
+            // Save state
+            saveAcceptedSchedule();
+            renderTimetable();
+        }
+        
+        // Cancel schedule session and generate new one
+        function cancelScheduleSession(subject, date) {
+            const scheduleItem = acceptedSchedule.find(s => s.subject === subject && s.date === date);
+            if (!scheduleItem) {
+                showToast('Không tìm thấy buổi học này', 'error');
+                return;
+            }
+            
+            const confirm = window.confirm(
+                `Bạn có chắc muốn hủy buổi học ${subject} vào ${new Date(date).toLocaleDateString('vi-VN')}?\n\n` +
+                `Hệ thống sẽ tự động tạo buổi học mới thay thế.`
+            );
+            if (!confirm) return;
+            
+            // Remove the cancelled schedule
+            const index = acceptedSchedule.findIndex(s => s.subject === subject && s.date === date);
+            if (index > -1) {
+                acceptedSchedule.splice(index, 1);
+            }
+            
+            // Generate new schedule for this subject with auto time slots
+            const hours = scheduleItem.suggestedHours || 2;
+            const newDate = new Date();
+            newDate.setDate(newDate.getDate() + 3); // 3 days from now
+            const newDateStr = newDate.toISOString().split('T')[0];
+            
+            // Check if this date already has a session for this subject
+            let finalDate = newDateStr;
+            let daysAdded = 3;
+            while (acceptedSchedule.some(s => s.subject === subject && s.date === finalDate)) {
+                daysAdded++;
+                const nextDate = new Date();
+                nextDate.setDate(nextDate.getDate() + daysAdded);
+                finalDate = nextDate.toISOString().split('T')[0];
+            }
+            
+            // Auto-generate time slots (7:00 - 21:00)
+            const startHour = 7;
+            const endHour = Math.min(21, startHour + Math.ceil(hours));
+            const autoTimeSlots = [{
+                start: `${String(startHour).padStart(2, '0')}:00`,
+                end: `${String(endHour).padStart(2, '0')}:00`
+            }];
+            const autoTime = `${String(startHour).padStart(2, '0')}:00-${String(endHour).padStart(2, '0')}:00`;
+            
+            const newSchedule = {
+                subject: subject,
+                date: finalDate,
+                time: autoTime,
+                suggestedHours: hours,
+                suggestedSlots: autoTimeSlots,
+                completed: false,
+                inProgress: false,
+                createdAt: new Date().toISOString()
+            };
+            
+            acceptedSchedule.push(newSchedule);
+            saveAcceptedSchedule();
+            renderTimetable();
+            
+            showToast(`Đã hủy buổi học. Buổi mới: ${subject} vào ${new Date(finalDate).toLocaleDateString('vi-VN')}`, 'success');
+        }
+        
+        // Mark schedule as completed (called from Pomodoro completion)
+        function markScheduleAsCompleted(subject, date) {
+            const scheduleItem = acceptedSchedule.find(s => s.subject === subject && s.date === date);
+            if (!scheduleItem) return;
+            
+            // Mark as completed
+            scheduleItem.completed = true;
+            scheduleItem.completedAt = new Date().toISOString();
+            scheduleItem.inProgress = false;
+            
+            // Add to study sessions
+            if (!studySessions[subject]) {
+                studySessions[subject] = [];
+            }
+            studySessions[subject].push({
+                date: date,
+                hours: scheduleItem.suggestedHours || 2,
+                completedAt: scheduleItem.completedAt
+            });
+            
+            // Award points for completing study session
+            const pointsEarned = Math.floor((scheduleItem.suggestedHours || 2) * 5); // 5 points per hour
+            totalPoints += pointsEarned;
+            updateChallengeProgress('daily', 1);
+            
+            // Update UI
+            document.getElementById('statsTotalPoints').textContent = totalPoints;
+            showToast(`Hoàn thành: ${subject} - ${scheduleItem.suggestedHours || 2}h (+${pointsEarned} điểm)`, 'success');
+            
+            // Save both
+            saveAcceptedSchedule();
+            saveStudySessionsToStorage();
+            saveGamificationState();
+            
+            // Re-render
+            renderTimetable();
+            renderProgress(Object.keys(subjectMeta), buildMatrix());
+            loadLeaderboard();
+        }
+        
+        // Create task from schedule
+        function createTaskFromSchedule(subject, date, hours) {
+            const task = {
+                id: 'schedule_' + Date.now(),
+                title: `Học ${subject}`,
+                description: `Ôn tập ${subject} theo lịch học`,
+                deadline: date,
+                priority: 'medium',
+                estimatedHours: hours || 2,
+                status: 'pending'
+            };
+            allTasks.push(task);
+            saveTaskLocally(task);
+            showToast(`Đã tạo task từ lịch học: ${subject}`, 'success');
+            renderTasksPage();
+        }
+
+        // Upload exam schedule (Excel/CSV)
+        async function uploadExamSchedule() {
+            const fileInput = document.getElementById('examFile');
+            const file = fileInput.files[0];
+            if (!file) {
+                document.getElementById('uploadResult').textContent = 'Vui lòng chọn file để tải lên.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('userId', currentUserId);
+
+            try {
+                document.getElementById('uploadResult').textContent = 'Đang tải lên...';
+                const res = await fetch(`${API_BASE}/academic/exam-schedule/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if (data && data.success) {
+                    document.getElementById('uploadResult').textContent = 'Tải lên thành công. ' + (data.data ? data.data.length + ' mục đã được ghi nhận.' : '');
+                    // refresh schedule list if available
+                    loadExamSchedule();
+                } else {
+                    document.getElementById('uploadResult').textContent = 'Lỗi: ' + (data && data.message ? data.message : 'Không thể xử lý file.');
+                }
+            } catch (err) {
+                document.getElementById('uploadResult').textContent = 'Lỗi khi tải lên: ' + err.message;
+            }
+        }
+
+        // Busy slots editor
+        function addBusySlotRow(slot) {
+            const container = document.getElementById('busySlotsContainer');
+            const id = 'busy-' + Date.now() + Math.floor(Math.random() * 1000);
+            const startDate = slot && slot.startDate ? slot.startDate : '';
+            const endDate = slot && slot.endDate ? slot.endDate : '';
+            const startTime = slot && slot.startTime ? slot.startTime : '08:00';
+            const endTime = slot && slot.endTime ? slot.endTime : '17:00';
+
+            const row = document.createElement('div');
+            row.id = id;
+            row.className = 'busy-slot-row';
+            row.style.cssText = `
+                background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+                border: 1px solid rgba(102, 126, 234, 0.2);
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 12px;
+                display: grid;
+                grid-template-columns: 1fr 1fr auto;
+                gap: 12px;
+                align-items: center;
+                transition: all 0.3s ease;
+            `;
+            row.innerHTML = `
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <label style="font-size:0.85em;font-weight:600;color:#667eea;">Từ ngày</label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                        <input type="date" class="busy-start-date" value="${startDate}" 
+                            style="padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9em;">
+                        <input type="time" class="busy-start-time" value="${startTime}" 
+                            style="padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9em;">
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <label style="font-size:0.85em;font-weight:600;color:#764ba2;">Đến ngày</label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                        <input type="date" class="busy-end-date" value="${endDate}" 
+                            style="padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9em;">
+                        <input type="time" class="busy-end-time" value="${endTime}" 
+                            style="padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9em;">
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="this.closest('.busy-slot-row').remove()" 
+                    style="padding:10px 16px;height:fit-content;align-self:end;">Xóa</button>
+            `;
+            
+            // Hover effect
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateY(-2px)';
+                row.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.15)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateY(0)';
+                row.style.boxShadow = 'none';
+            });
+            
+            container.appendChild(row);
+        }
+
+        async function saveBusySlots() {
+            const container = document.getElementById('busySlotsContainer');
+            const rows = container.querySelectorAll('.busy-slot-row');
+            const slots = [];
+            let hasError = false;
+            
+            rows.forEach((r, index) => {
+                const sd = r.querySelector('.busy-start-date').value;
+                const ed = r.querySelector('.busy-end-date').value;
+                const st = r.querySelector('.busy-start-time').value;
+                const et = r.querySelector('.busy-end-time').value;
+                
+                // Validation: Both dates required
+                if (sd && ed) {
+                    const startDate = new Date(sd);
+                    const endDate = new Date(ed);
+                    const currentYear = new Date().getFullYear();
+                    
+                    // Validation: Year must be >= current year (2025)
+                    if (startDate.getFullYear() < currentYear) {
+                        showMessage(`Khoảng bận #${index + 1}: Năm phải từ ${currentYear} trở đi`, 'error');
+                        hasError = true;
+                        return;
+                    }
+                    if (endDate.getFullYear() < currentYear) {
+                        showMessage(`Khoảng bận #${index + 1}: Năm phải từ ${currentYear} trở đi`, 'error');
+                        hasError = true;
+                        return;
+                    }
+                    
+                    // Validation: End date must be after start date
+                    if (endDate < startDate) {
+                        showMessage(`Khoảng bận #${index + 1}: Ngày kết thúc phải sau ngày bắt đầu`, 'error');
+                        hasError = true;
+                        return;
+                    }
+                    
+                    // Validation: Max range 90 days
+                    const daysDiff = (endDate - startDate) / (1000 * 60 * 60 * 24);
+                    if (daysDiff > 90) {
+                        showMessage(`Khoảng bận #${index + 1}: Khoảng thời gian không được quá 90 ngày`, 'error');
+                        hasError = true;
+                        return;
+                    }
+                    
+                    // Validation: Time range if both provided
+                    if (st && et) {
+                        const [startHour, startMin] = st.split(':').map(Number);
+                        const [endHour, endMin] = et.split(':').map(Number);
+                        const startMinutes = startHour * 60 + startMin;
+                        const endMinutes = endHour * 60 + endMin;
+                        
+                        if (endMinutes <= startMinutes) {
+                            showMessage(`Khoảng bận #${index + 1}: Giờ kết thúc phải sau giờ bắt đầu`, 'error');
+                            hasError = true;
+                            return;
+                        }
+                    }
+                    
+                    slots.push({ startDate: sd, endDate: ed, startTime: st || null, endTime: et || null });
+                } else if (sd || ed) {
+                    showMessage(`Khoảng bận #${index + 1}: Vui lòng nhập đầy đủ ngày bắt đầu và kết thúc`, 'error');
+                    hasError = true;
+                    return;
+                }
+            });
+            
+            if (hasError) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/academic/busy-slots?userId=${currentUserId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(slots)
+                });
+                const data = await res.json();
+                if (data && data.success) {
+                    showMessage('Lưu thời gian bận thành công', 'success');
+                } else {
+                    showMessage(data && data.message ? data.message : 'Lỗi khi lưu thời gian bận', 'error');
+                }
+                // attempt to reload busy slots
+                loadBusySlots();
+            } catch (err) {
+                showMessage('Lỗi: ' + err.message, 'error');
+            }
+        }
+
+        // Request suggestions
+        async function requestSuggestions() {
+            try {
+                const res = await fetch(`${API_BASE}/academic/suggested-schedule/${currentUserId}`);
+                const data = await res.json();
+                if (data.success && data.data && data.data.length > 0) {
+                    // Transform API response to match our format
+                    const suggestions = data.data.map(item => ({
+                        subject: item.subject,
+                        date: item.date,
+                        time: item.startTime && item.endTime ? `${item.startTime}-${item.endTime}` : '',
+                        suggestedHours: item.hours || 2,
+                        suggestedSlots: item.startTime && item.endTime ? [{start: item.startTime, end: item.endTime}] : []
+                    }));
+                    renderSuggestions(suggestions);
+                    showToast('Đã tạo gợi ý lịch học thành công!', 'success');
+                } else {
+                    document.getElementById('suggestionsContainer').innerHTML = '<div class="empty-state" style="padding:30px;text-align:center;color:#666;"><p>Chưa có dữ liệu lịch thi.</p><p style="font-size:0.9em;margin-top:10px;">Vui lòng tải lên file lịch thi hoặc nhập thông tin môn học trước.</p></div>';
+                }
+            } catch (err) {
+                console.error('Error requesting suggestions:', err);
+                document.getElementById('suggestionsContainer').innerHTML = '<div class="error-message" style="padding:20px;background:#f8d7da;color:#721c24;border-radius:8px;"><strong>Lỗi:</strong> ' + err.message + '<br><small>Kiểm tra console để biết thêm chi tiết.</small></div>';
+            }
+        }
+
+        // Load schedule tab data (exam schedule + busy slots + study sessions)
+        async function loadScheduleTab() {
+            // load exam schedule
+            await loadExamSchedule();
+            // load busy slots
+            await loadBusySlots();
+            // render study sessions
+            renderStudySessions();
+            // render schedule tasks with pagination
+            currentScheduleTaskPage = 1;
+            renderScheduleTasksPage();
+        }
+
+        function updateStudySessionDropdown() {
+            const dropdown = document.getElementById('studySubject');
+            if (!dropdown) return;
+            
+            const subjects = new Set();
+            // Add subjects from tasks
+            if (allTasks && allTasks.length > 0) {
+                allTasks.forEach(t => {
+                    if (t.subject) subjects.add(t.subject);
+                    if (t.title) subjects.add(t.title);
+                });
+            }
+            // Add from subjectMeta
+            Object.keys(subjectMeta).forEach(s => subjects.add(s));
+            
+            const selected = dropdown.value;
+            dropdown.innerHTML = '<option value="">-- Chọn môn --</option>';
+            Array.from(subjects).sort().forEach(sub => {
+                if (sub && sub.trim()) {
+                    const opt = document.createElement('option');
+                    opt.value = sub;
+                    opt.textContent = sub;
+                    dropdown.appendChild(opt);
+                }
+            });
+            if (selected && subjects.has(selected)) {
+                dropdown.value = selected;
+            }
+        }
+
+        function addStudySession() {
+            const subject = document.getElementById('studySubject').value;
+            const hours = parseFloat(document.getElementById('studyHours').value);
+            
+            if (!subject || subject.trim() === '' || subject === '-- Chọn môn --') {
+                showMessage('Vui lòng chọn môn học từ danh sách', 'error');
+                document.getElementById('studySubject').focus();
+                return;
+            }
+            if (isNaN(hours) || hours <= 0) {
+                showMessage('Vui lòng nhập số giờ hợp lệ (> 0)', 'error');
+                document.getElementById('studyHours').focus();
+                return;
+            }
+            
+            if (!studySessions[subject]) studySessions[subject] = [];
+            studySessions[subject].push({ date: new Date().toLocaleDateString('vi-VN'), hours });
+            document.getElementById('studyHours').value = '1';
+            document.getElementById('studySubject').value = '';
+            renderStudySessions();
+            showMessage(`Đã ghi nhận ${hours}h học ${subject}`, 'success');
+        }
+
+        function renderStudySessions() {
+            const container = document.getElementById('studySessionsContainer');
+            if (!container) return; // Container doesn't exist in current UI
+            
+            container.innerHTML = '';
+            if (Object.keys(studySessions).length === 0) {
+                container.innerHTML = '<div style="color:#999;text-align:center;padding:20px;font-size:0.95em;">Chưa có buổi học nào được ghi nhận</div>';
+                return;
+            }
+            Object.keys(studySessions).sort().forEach(subject => {
+                const sessions = studySessions[subject] || [];
+                const totalHours = sessions.reduce((acc, s) => acc + (s.hours || 0), 0);
+                const recentSession = sessions.length > 0 ? sessions[sessions.length - 1].date : '-';
+                
+                const card = document.createElement('div');
+                card.style.display = 'grid';
+                card.style.gridTemplateColumns = '2fr 1fr 1fr auto';
+                card.style.gap = '8px';
+                card.style.padding = '12px';
+                card.style.border = '1px solid #e0e0e0';
+                card.style.borderRadius = '8px';
+                card.style.alignItems = 'center';
+                card.style.background = '#fafbfc';
+                card.innerHTML = `
+                    <div><strong>${subject}</strong></div>
+                    <div style="color:#666;font-size:0.9em;font-weight:500;">Tổng: ${totalHours.toFixed(1)}h</div>
+                    <div style="color:#999;font-size:0.9em;">Lần cuối: ${recentSession}</div>
+                    <button class="btn btn-secondary" onclick="clearStudySessions('${subject}')" style="padding:6px 10px;font-size:0.85em;font-weight:600;">Xóa</button>
+                `;
+                container.appendChild(card);
+            });
+            saveStudySessionsToStorage();
+        }
+
+        function loadStudySessionsFromStorage() {
+            const stored = localStorage.getItem(`studySessions_${currentUserId}`);
+            if (stored) {
+                try {
+                    studySessions = JSON.parse(stored);
+                } catch (e) {
+                    studySessions = {};
+                }
+            }
+        }
+
+        function saveStudySessionsToStorage() {
+            localStorage.setItem(`studySessions_${currentUserId}`, JSON.stringify(studySessions));
+        }
+
+        function clearStudySessions(subject) {
+            delete studySessions[subject];
+            saveStudySessionsToStorage();
+            renderStudySessions();
+            showMessage(`Đã xóa dữ liệu học tập ${subject}`, 'success');
+        }
+
+        // Load exam schedule (if endpoint exists)
+        async function loadExamSchedule() {
+            const containerId = 'uploadResult';
+            try {
+                const res = await fetch(`${API_BASE}/academic/exam-schedule/${currentUserId}`);
+                if (!res.ok) {
+                    document.getElementById(containerId).textContent = '';
+                    return;
+                }
+                const data = await res.json();
+                if (data && data.success && data.data && data.data.length) {
+                    const list = data.data.map(e => `${e.subject} — ${e.date}${e.time ? ' ' + e.time : ''}`);
+                    document.getElementById(containerId).textContent = 'Lịch thi đã tải: ' + list.length + ' môn';
+                    // populate subjects editor
+                    populateSubjects(data.data);
+                } else {
+                    document.getElementById(containerId).textContent = '';
+                }
+            } catch (err) {
+                // ignore (backend might not support this GET)
+                document.getElementById(containerId).textContent = '';
+            }
+        }
+
+        
+
+        // Subject metadata stored client-side: { subjectName: { chapters: number, hoursPerChapter: number } }
+        const subjectMeta = {};
+
+        function populateSubjects(examList) {
+            // examList: [{ subject, date, time }, ...]
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+            // unique subjects
+            const subjects = Array.from(new Set(examList.map(e => e.subject)));
+            
+            if (subjects.length === 0) {
+                container.innerHTML = '<div class="empty-state" style="padding:20px;text-align:center;color:#999;">Chưa có môn học nào. Vui lòng tải lên lịch thi.</div>';
+                return;
+            }
+            
+            subjects.forEach((sub, idx) => {
+                if (!subjectMeta[sub]) {
+                    subjectMeta[sub] = { chapters: 5, hoursPerChapter: 2 };
+                }
+                const meta = subjectMeta[sub];
+                
+                const card = document.createElement('div');
+                card.style.cssText = `
+                    background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px;
+                    padding: 16px;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                `;
+                
+                card.innerHTML = `
+                    <div style="position:absolute;top:0;right:0;width:60px;height:60px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);opacity:0.1;border-radius:0 12px 0 100%;"></div>
+                    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:15px;align-items:center;">
+                        <div>
+                            <div style="font-weight:700;font-size:1.05em;color:#2b4a66;margin-bottom:4px;display:flex;align-items:center;gap:8px;">
+                                <span style="display:inline-block;width:8px;height:8px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);border-radius:50%;"></span>
+                                ${sub}
+                            </div>
+                            <div style="font-size:0.85em;color:#666;">Môn học #${idx + 1}</div>
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.8em;color:#666;margin-bottom:4px;font-weight:600;">Số chương</label>
+                            <input type="number" class="subject-chapters" data-subject="${encodeURIComponent(sub)}" min="1" max="50" value="${meta.chapters}" 
+                                style="width:100%;padding:8px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:0.95em;transition:all 0.3s ease;background:#fff;"
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'"
+                                onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
+                        </div>
+                        <div>
+                            <label style="display:block;font-size:0.8em;color:#666;margin-bottom:4px;font-weight:600;">Giờ/chương</label>
+                            <input type="number" class="subject-hours" data-subject="${encodeURIComponent(sub)}" min="0.5" max="20" step="0.5" value="${meta.hoursPerChapter}"
+                                style="width:100%;padding:8px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:0.95em;transition:all 0.3s ease;background:#fff;"
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'"
+                                onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #e0e0e0;font-size:0.85em;color:#667eea;font-weight:600;">
+                        Tổng: ${meta.chapters * meta.hoursPerChapter} giờ học
+                    </div>
+                `;
+                
+                card.onmouseenter = () => {
+                    card.style.borderColor = '#667eea';
+                    card.style.transform = 'translateY(-2px)';
+                    card.style.boxShadow = '0 4px 12px rgba(102,126,234,0.15)';
+                };
+                card.onmouseleave = () => {
+                    card.style.borderColor = '#e0e0e0';
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = 'none';
+                };
+                
+                container.appendChild(card);
+            });
+        }
+
+        function applySubjectEdits() {
+            const chapterInputs = document.querySelectorAll('.subject-chapters');
+            chapterInputs.forEach(inp => {
+                const sub = decodeURIComponent(inp.dataset.subject);
+                const chapters = parseInt(inp.value) || 1;
+                if (!subjectMeta[sub]) subjectMeta[sub] = {};
+                subjectMeta[sub].chapters = chapters;
+            });
+            const hourInputs = document.querySelectorAll('.subject-hours');
+            hourInputs.forEach(inp => {
+                const sub = decodeURIComponent(inp.dataset.subject);
+                const hours = parseFloat(inp.value) || 1;
+                if (!subjectMeta[sub]) subjectMeta[sub] = {};
+                subjectMeta[sub].hoursPerChapter = hours;
+            });
+            
+            // Re-render to update totals
+            renderSubjects();
+            
+            showMessage('Cập nhật thông tin môn học thành công', 'success');
+        }
+
+        // Try to load busy slots if backend provides them, otherwise keep UI as-is
+        async function loadBusySlots() {
+            try {
+                const res = await fetch(`${API_BASE}/academic/busy-slots?userId=${currentUserId}`);
+                if (!res.ok) {
+                    console.log('Busy slots endpoint not available (this is OK)');
+                    return;
+                }
+                const data = await res.json();
+                if (data && data.success && Array.isArray(data.data)) {
+                    const container = document.getElementById('busySlotsContainer');
+                    if (container) {
+                        container.innerHTML = '';
+                        data.data.forEach(s => addBusySlotRow(s));
+                    }
+                }
+            } catch (err) {
+                console.log('Busy slots API error (this is OK):', err.message);
+            }
+        }
+
+        function renderSuggestions(items) {
+            if (!items || items.length === 0) {
+                document.getElementById('suggestionsContainer').innerHTML = '<div class="empty-state">Không có gợi ý.</div>';
+                document.getElementById('suggestionsPagination').style.display = 'none';
+                return;
+            }
+
+            allSuggestions = items;
+            currentSuggestionsPage = 1;
+            renderSuggestionsPage();
+        }
+
+        function renderSuggestionsPage() {
+            const container = document.getElementById('suggestionsContainer');
+            container.innerHTML = '';
+
+            if (!allSuggestions || allSuggestions.length === 0) {
+                container.innerHTML = '<div class="empty-state">Không có gợi ý.</div>';
+                document.getElementById('suggestionsPagination').style.display = 'none';
+                return;
+            }
+
+            const totalPages = Math.ceil(allSuggestions.length / SUGGESTIONS_PER_PAGE);
+            const startIdx = (currentSuggestionsPage - 1) * SUGGESTIONS_PER_PAGE;
+            const endIdx = Math.min(startIdx + SUGGESTIONS_PER_PAGE, allSuggestions.length);
+            const pageItems = allSuggestions.slice(startIdx, endIdx);
+
+            // Create table wrapper
+            const table = document.createElement('table');
+            table.style.width = '100%';
+            table.style.borderCollapse = 'collapse';
+            table.style.marginBottom = '15px';
+            table.style.background = '#fff';
+            table.style.border = '1px solid #e0e0e0';
+            table.style.borderRadius = '8px';
+            table.style.overflow = 'hidden';
+
+            // Create header
+            const thead = document.createElement('thead');
+            thead.style.background = '#f7fafc';
+            thead.style.borderBottom = '2px solid #d0d7de';
+            const headerRow = document.createElement('tr');
+            headerRow.style.height = '40px';
+            
+            const headers = ['Môn', 'Ngày', 'Giờ', 'Phiên', 'Hạn', 'Thao tác'];
+            headers.forEach(h => {
+                const th = document.createElement('th');
+                th.textContent = h;
+                th.style.padding = '8px 12px';
+                th.style.textAlign = 'left';
+                th.style.fontWeight = '600';
+                th.style.color = '#2b4a66';
+                th.style.fontSize = '0.9em';
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Create body
+            const tbody = document.createElement('tbody');
+            pageItems.forEach((it, idx) => {
+                const globalIdx = startIdx + idx;
+                const tr = document.createElement('tr');
+                tr.style.borderTop = '1px solid #e0e0e0';
+                tr.style.height = '48px';
+                tr.onmouseover = () => tr.style.background = '#f9fbfd';
+                tr.onmouseout = () => tr.style.background = '#fff';
+                tr.setAttribute('data-suggestion-index', globalIdx);
+
+                const cells = [
+                    it.subject || '-',
+                    it.date || '-',
+                    `${it.suggestedHours || 0}h`,
+                    `${it.suggestedSlots ? it.suggestedSlots.length : 0}`,
+                    it.time || '-'
+                ];
+
+                cells.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    td.style.padding = '8px 12px';
+                    td.style.fontSize = '0.95em';
+                    td.style.color = '#333';
+                    tr.appendChild(td);
+                });
+
+                // Action cell
+                const actionTd = document.createElement('td');
+                actionTd.style.padding = '8px 12px';
+                actionTd.style.whiteSpace = 'nowrap';
+                
+                const acceptBtn = document.createElement('button');
+                acceptBtn.textContent = 'Chấp nhận';
+                acceptBtn.className = 'btn btn-primary suggest-action-accept';
+                acceptBtn.onclick = () => acceptSuggestion(globalIdx);
+                acceptBtn.style.padding = '6px 10px';
+                acceptBtn.style.fontSize = '0.85em';
+                acceptBtn.style.fontWeight = '600';
+                acceptBtn.style.marginRight = '6px';
+
+                const rejectBtn = document.createElement('button');
+                rejectBtn.textContent = '✕ Từ chối';
+                rejectBtn.className = 'btn btn-secondary suggest-action-reject';
+                rejectBtn.onclick = () => rejectSuggestion(globalIdx);
+                rejectBtn.style.padding = '6px 10px';
+                rejectBtn.style.fontSize = '0.85em';
+                rejectBtn.style.fontWeight = '600';
+                rejectBtn.style.marginRight = '6px';
+
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'suggest-status';
+                statusDiv.textContent = '---';
+                statusDiv.style.fontSize = '0.85em';
+                statusDiv.style.color = '#666';
+                statusDiv.style.display = 'inline-block';
+                statusDiv.style.minWidth = '50px';
+                statusDiv.style.textAlign = 'center';
+
+                actionTd.appendChild(acceptBtn);
+                actionTd.appendChild(rejectBtn);
+                actionTd.appendChild(statusDiv);
+                tr.appendChild(actionTd);
+
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+
+            container.appendChild(table);
+
+            document.getElementById('suggestionsPageIndicator').textContent = `Trang ${currentSuggestionsPage} / ${totalPages}`;
+            document.getElementById('suggestionsPagination').style.display = 'flex';
+        }
+
+        function goToFirstSuggestionsPage() {
+            currentSuggestionsPage = 1;
+            renderSuggestionsPage();
+        }
+        function goToLastSuggestionsPage() {
+            const maxPage = Math.ceil(allSuggestions.length / SUGGESTIONS_PER_PAGE) || 1;
+            currentSuggestionsPage = maxPage;
+            renderSuggestionsPage();
+        }
+        function goToPrevSuggestionsPage() {
+            if (currentSuggestionsPage > 1) {
+                currentSuggestionsPage--;
+                renderSuggestionsPage();
+            }
+        }
+        function goToNextSuggestionsPage() {
+            const maxPage = Math.ceil(allSuggestions.length / SUGGESTIONS_PER_PAGE) || 1;
+            if (currentSuggestionsPage < maxPage) {
+                currentSuggestionsPage++;
+                renderSuggestionsPage();
+            }
+        }
+
+        // Render schedule as a subject x date matrix and show progress
+        // Build matrix from accepted schedule
+        function buildMatrix() {
+            const items = acceptedSchedule;
+            if (!items || items.length === 0) return {};
+            
+            const dateSet = new Set();
+            const subjectSet = new Set();
+            items.forEach(it => {
+                if (it.date) dateSet.add(it.date);
+                if (it.subject) subjectSet.add(it.subject);
+            });
+            const dates = Array.from(dateSet).sort();
+            const subjects = Array.from(subjectSet);
+            Object.keys(subjectMeta).forEach(s => { if (!subjectSet.has(s)) subjects.push(s); });
+            
+            const matrix = {};
+            subjects.forEach(s => { matrix[s] = {}; dates.forEach(d => matrix[s][d] = 0); });
+            
+            function hoursBetween(start, end) {
+                if (!start || !end) return 0;
+                const [sh, sm] = start.split(':').map(Number);
+                const [eh, em] = end.split(':').map(Number);
+                let startMin = sh * 60 + (sm || 0);
+                let endMin = eh * 60 + (em || 0);
+                if (endMin <= startMin) endMin += 24 * 60;
+                return (endMin - startMin) / 60;
+            }
+            
+            items.forEach(it => {
+                const subj = it.subject;
+                const d = it.date;
+                if (!matrix[subj]) matrix[subj] = {};
+                if (it.suggestedSlots && it.suggestedSlots.length) {
+                    it.suggestedSlots.forEach(s => {
+                        const h = hoursBetween(s.start, s.end) || 0;
+                        matrix[subj][d] = (matrix[subj][d] || 0) + h;
+                    });
+                } else if (it.suggestedHours) {
+                    matrix[subj][d] = (matrix[subj][d] || 0) + (it.suggestedHours || 0);
+                } else if (it.estimatedHours) {
+                    matrix[subj][d] = (matrix[subj][d] || 0) + (it.estimatedHours || 0);
+                }
+            });
+            
+            return matrix;
+        }
+        
+        // Render visual timetable as blocks/cards
+        function renderTimetable() {
+            const container = document.getElementById('timetableContainer');
+            const card = document.getElementById('acceptedScheduleCard');
+            const progressCard = document.getElementById('progressCard');
+            
+            if (!acceptedSchedule || acceptedSchedule.length === 0) {
+                card.style.display = 'none';
+                progressCard.style.display = 'none';
+                return;
+            }
+            
+            card.style.display = 'block';
+            progressCard.style.display = 'block';
+            container.innerHTML = '';
+            
+            // Group by date
+            const byDate = {};
+            acceptedSchedule.forEach(item => {
+                if (!byDate[item.date]) byDate[item.date] = [];
+                byDate[item.date].push(item);
+            });
+            
+            const dates = Object.keys(byDate).sort();
+            
+            // Create timetable grid
+            const timetable = document.createElement('div');
+            timetable.style.display = 'grid';
+            timetable.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
+            timetable.style.gap = '20px';
+            
+            dates.forEach(date => {
+                const dayCard = document.createElement('div');
+                dayCard.style.cssText = `
+                    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+                    border-radius: 12px;
+                    padding: 16px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    border: 2px solid #e9ecef;
+                    transition: all 0.3s ease;
+                `;
+                
+                dayCard.onmouseenter = () => {
+                    dayCard.style.boxShadow = '0 6px 16px rgba(0,0,0,0.15)';
+                    dayCard.style.transform = 'translateY(-4px)';
+                };
+                dayCard.onmouseleave = () => {
+                    dayCard.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                    dayCard.style.transform = 'translateY(0)';
+                };
+                
+                // Date header
+                const dateHeader = document.createElement('div');
+                const dateObj = new Date(date);
+                const dayName = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'][dateObj.getDay()];
+                dateHeader.innerHTML = `
+                    <div style="font-weight:700;font-size:1.1em;color:#2b4a66;margin-bottom:4px;">${dayName}</div>
+                    <div style="font-size:0.9em;color:#666;margin-bottom:12px;">${dateObj.toLocaleDateString('vi-VN')}</div>
+                `;
+                dayCard.appendChild(dateHeader);
+                
+                // Schedule blocks
+                const items = byDate[date];
+                items.forEach(item => {
+                    const block = document.createElement('div');
+                    const colors = [
+                        {bg: '#e3f2fd', border: '#2196F3', text: '#1565C0'},
+                        {bg: '#f3e5f5', border: '#9C27B0', text: '#6A1B9A'},
+                        {bg: '#e8f5e9', border: '#4CAF50', text: '#2E7D32'},
+                        {bg: '#fff3e0', border: '#FF9800', text: '#E65100'},
+                        {bg: '#fce4ec', border: '#E91E63', text: '#AD1457'},
+                    ];
+                    const colorIndex = Math.abs(item.subject.split('').reduce((a,c) => a + c.charCodeAt(0), 0)) % colors.length;
+                    const color = colors[colorIndex];
+                    
+                    // Determine time slots
+                    let timeText = '';
+                    if (item.suggestedSlots && item.suggestedSlots.length > 0) {
+                        const slots = item.suggestedSlots.map(s => `${s.start}-${s.end}`).join(', ');
+                        timeText = slots;
+                    } else if (item.time) {
+                        timeText = item.time;
+                    } else if (item.suggestedHours) {
+                        timeText = `${item.suggestedHours}h`;
+                    }
+                    
+                    block.style.cssText = `
+                        background: ${color.bg};
+                        border-left: 4px solid ${color.border};
+                        border-radius: 8px;
+                        padding: 12px;
+                        margin-bottom: 10px;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    `;
+                    
+                    block.onmouseenter = () => {
+                        block.style.background = color.border + '15';
+                        block.style.transform = 'translateX(4px)';
+                    };
+                    block.onmouseleave = () => {
+                        block.style.background = color.bg;
+                        block.style.transform = 'translateX(0)';
+                    };
+                    
+                    const isCompleted = item.completed || false;
+                    const isInProgress = item.inProgress || false;
+                    const completedStyle = isCompleted ? 'opacity: 0.6; text-decoration: line-through;' : '';
+                    const inProgressStyle = isInProgress ? 'border: 3px solid #667eea !important; box-shadow: 0 0 12px rgba(102, 126, 234, 0.4) !important;' : '';
+                    const completedBadge = isCompleted ? '<span style="background:#4CAF50;color:white;padding:2px 6px;border-radius:4px;font-size:0.75em;margin-left:6px;">Đã học</span>' : '';
+                    const inProgressBadge = isInProgress ? '<span style="background:#667eea;color:white;padding:2px 6px;border-radius:4px;font-size:0.75em;margin-left:6px;animation:pulse 2s infinite;">⏱ Đang học</span>' : '';
+                    
+                    if (inProgressStyle) {
+                        block.style.cssText += inProgressStyle;
+                    }
+                    
+                    block.innerHTML = `
+                        <div style="${completedStyle}">
+                            <div style="font-weight:700;color:${color.text};margin-bottom:6px;font-size:0.95em;">${item.subject}${completedBadge}${inProgressBadge}</div>
+                            ${timeText ? `<div style="font-size:0.85em;color:#666;margin-bottom:4px;">${timeText}</div>` : ''}
+                            ${item.suggestedHours ? `<div style="font-size:0.85em;color:#666;margin-bottom:8px;">${item.suggestedHours}h</div>` : ''}
+                        </div>
+                        ${!isCompleted && !isInProgress ? `
+                            <button onclick="event.stopPropagation(); startStudyingFromSchedule('${item.subject}', '${date}')" class="btn btn-primary" style="width:100%;padding:8px;font-size:0.85em;margin-top:8px;">Vào học</button>
+                            <button onclick="event.stopPropagation(); cancelScheduleSession('${item.subject}', '${date}')" class="btn" style="width:100%;padding:8px;font-size:0.85em;margin-top:6px;background:rgba(244,67,54,0.1);color:#f44336;border:1px solid #f44336;">Hủy buổi học</button>
+                        ` : ''}
+                    `;
+                    
+                    block.onclick = null; // Remove delete on click
+                    
+                    dayCard.appendChild(block);
+                });
+                
+                timetable.appendChild(dayCard);
+            });
+            
+            container.appendChild(timetable);
+        }
+
+        function renderProgress(subjects, matrix) {
+            const container = document.getElementById('progressContainer');
+            const paginationDiv = document.getElementById('progressPagination');
+            container.innerHTML = '';
+            
+            if (!subjects || subjects.length === 0) {
+                container.innerHTML = '<div style="color:#999;text-align:center;padding:20px;">Không có dữ liệu để hiển thị</div>';
+                paginationDiv.style.display = 'none';
+                return;
+            }
+
+            const header = document.createElement('h3');
+            header.style.marginBottom = '20px';
+            header.style.color = '#2b4a66';
+            header.textContent = 'Tiến độ học tập theo môn';
+            container.appendChild(header);
+
+            // Pagination logic
+            const sortedSubjects = [...subjects].sort();
+            const totalPages = Math.ceil(sortedSubjects.length / PROGRESS_PER_PAGE);
+            const startIdx = (currentProgressPage - 1) * PROGRESS_PER_PAGE;
+            const endIdx = Math.min(startIdx + PROGRESS_PER_PAGE, sortedSubjects.length);
+            const pageSubjects = sortedSubjects.slice(startIdx, endIdx);
+
+            // Create chart table
+            const chartTable = document.createElement('table');
+            chartTable.style.width = '100%';
+            chartTable.style.borderCollapse = 'collapse';
+            chartTable.style.background = '#fff';
+            chartTable.style.border = '1px solid #e0e0e0';
+            chartTable.style.borderRadius = '8px';
+            chartTable.style.overflow = 'hidden';
+
+            // Chart header
+            const thead = document.createElement('thead');
+            thead.style.background = '#f7fafc';
+            thead.style.borderBottom = '2px solid #d0d7de';
+            const headerRow = document.createElement('tr');
+            headerRow.style.height = '40px';
+            
+            const headers = ['Môn', 'Dự định (h)', 'Đã học (h)', 'Cần học (h)', 'Tiến độ (%)'];
+            headers.forEach(h => {
+                const th = document.createElement('th');
+                th.textContent = h;
+                th.style.padding = '10px 12px';
+                th.style.textAlign = 'left';
+                th.style.fontWeight = '600';
+                th.style.color = '#2b4a66';
+                th.style.fontSize = '0.9em';
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            chartTable.appendChild(thead);
+
+            // Chart body with visual bars
+            const tbody = document.createElement('tbody');
+            pageSubjects.forEach(sub => {
+                const meta = subjectMeta[sub] || { chapters: 0, hoursPerChapter: 0 };
+                const needed = (meta.chapters || 0) * (meta.hoursPerChapter || 0);
+                const scheduled = Object.values(matrix[sub] || {}).reduce((a, b) => a + (b || 0), 0);
+                const studied = (studySessions[sub] || []).reduce((acc, s) => acc + (s.hours || 0), 0);
+                const pct = needed > 0 ? Math.min(100, Math.round((scheduled / needed) * 100)) : 0;
+
+                const tr = document.createElement('tr');
+                tr.style.borderTop = '1px solid #e0e0e0';
+                tr.style.height = '56px';
+                tr.onmouseover = () => tr.style.background = '#f9fbfd';
+                tr.onmouseout = () => tr.style.background = '#fff';
+
+                // Subject name
+                const subjectTd = document.createElement('td');
+                subjectTd.textContent = sub;
+                subjectTd.style.padding = '10px 12px';
+                subjectTd.style.fontWeight = '600';
+                subjectTd.style.color = '#2b4a66';
+                subjectTd.style.fontSize = '0.95em';
+                tr.appendChild(subjectTd);
+
+                // Scheduled hours
+                const scheduledTd = document.createElement('td');
+                scheduledTd.textContent = scheduled.toFixed(1);
+                scheduledTd.style.padding = '10px 12px';
+                scheduledTd.style.fontSize = '0.95em';
+                scheduledTd.style.color = '#333';
+                tr.appendChild(scheduledTd);
+
+                // Studied hours
+                const studiedTd = document.createElement('td');
+                studiedTd.textContent = studied.toFixed(1);
+                studiedTd.style.padding = '10px 12px';
+                studiedTd.style.fontSize = '0.95em';
+                studiedTd.style.color = '#333';
+                tr.appendChild(studiedTd);
+
+                // Needed hours
+                const neededTd = document.createElement('td');
+                neededTd.textContent = needed.toFixed(1);
+                neededTd.style.padding = '10px 12px';
+                neededTd.style.fontSize = '0.95em';
+                neededTd.style.color = '#333';
+                tr.appendChild(neededTd);
+
+                // Progress percentage with visual bar
+                const progressTd = document.createElement('td');
+                progressTd.style.padding = '10px 12px';
+                progressTd.style.fontSize = '0.95em';
+                
+                const progressBarContainer = document.createElement('div');
+                progressBarContainer.style.display = 'flex';
+                progressBarContainer.style.alignItems = 'center';
+                progressBarContainer.style.gap = '10px';
+                
+                const barOuter = document.createElement('div');
+                barOuter.style.flex = '1';
+                barOuter.style.height = '24px';
+                barOuter.style.background = '#eef2f6';
+                barOuter.style.borderRadius = '12px';
+                barOuter.style.overflow = 'hidden';
+                barOuter.style.position = 'relative';
+                barOuter.style.border = '1px solid #d0d7de';
+                
+                const barInner = document.createElement('div');
+                barInner.style.height = '100%';
+                barInner.style.width = `${pct}%`;
+                barInner.style.background = `linear-gradient(90deg, #4CAF50, #8BC34A)`;
+                barInner.style.transition = 'width 0.3s ease';
+                barInner.style.display = 'flex';
+                barInner.style.alignItems = 'center';
+                barInner.style.justifyContent = 'flex-end';
+                barInner.style.paddingRight = '4px';
+                
+                const percentText = document.createElement('span');
+                percentText.textContent = pct > 5 ? `${pct}%` : '';
+                percentText.style.color = '#fff';
+                percentText.style.fontSize = '0.75em';
+                percentText.style.fontWeight = '600';
+                barInner.appendChild(percentText);
+                
+                barOuter.appendChild(barInner);
+                progressBarContainer.appendChild(barOuter);
+                
+                const percentLabel = document.createElement('span');
+                percentLabel.textContent = `${pct}%`;
+                percentLabel.style.minWidth = '40px';
+                percentLabel.style.fontWeight = '600';
+                percentLabel.style.color = pct >= 80 ? '#4CAF50' : pct >= 50 ? '#ff9800' : '#f44336';
+                progressBarContainer.appendChild(percentLabel);
+                
+                progressTd.appendChild(progressBarContainer);
+                tr.appendChild(progressTd);
+
+                tbody.appendChild(tr);
+            });
+            chartTable.appendChild(tbody);
+
+            container.appendChild(chartTable);
+            
+            // Show/hide pagination
+            if (totalPages > 1) {
+                paginationDiv.style.display = 'flex';
+                document.getElementById('progressPageIndicator').textContent = `Trang ${currentProgressPage} / ${totalPages}`;
+            } else {
+                paginationDiv.style.display = 'none';
+            }
+        }
+        
+        // Progress pagination functions
+        function goToFirstProgressPage() {
+            currentProgressPage = 1;
+            renderProgress(Object.keys(subjectMeta), buildMatrix());
+        }
+        
+        function goToLastProgressPage() {
+            const subjects = Object.keys(subjectMeta);
+            const maxPage = Math.ceil(subjects.length / PROGRESS_PER_PAGE) || 1;
+            currentProgressPage = maxPage;
+            renderProgress(subjects, buildMatrix());
+        }
+        
+        function goToPrevProgressPage() {
+            if (currentProgressPage > 1) {
+                currentProgressPage--;
+                renderProgress(Object.keys(subjectMeta), buildMatrix());
+            }
+        }
+        
+        // ============================
+        // GAMIFICATION PERSISTENCE
+        // ============================
+        
+        function saveGamificationState() {
+            localStorage.setItem('totalPoints', totalPoints);
+            localStorage.setItem('todayPomodoroCount', todayPomodoroCount);
+            localStorage.setItem('activeChallenges', JSON.stringify(activeChallenges));
+            localStorage.setItem('earnedBadges', JSON.stringify(earnedBadges));
+            localStorage.setItem('lastSaveDate', new Date().toISOString().split('T')[0]);
+        }
+        
+        function loadGamificationState() {
+            const savedDate = localStorage.getItem('lastSaveDate');
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Reset daily counters if it's a new day
+            if (savedDate !== today) {
+                todayPomodoroCount = 0;
+                localStorage.setItem('todayPomodoroCount', 0);
+                localStorage.setItem('lastSaveDate', today);
+            } else {
+                totalPoints = parseInt(localStorage.getItem('totalPoints') || '0');
+                todayPomodoroCount = parseInt(localStorage.getItem('todayPomodoroCount') || '0');
+                
+                const savedChallenges = localStorage.getItem('activeChallenges');
+                if (savedChallenges) {
+                    activeChallenges = JSON.parse(savedChallenges);
+                }
+                
+                const savedBadges = localStorage.getItem('earnedBadges');
+                if (savedBadges) {
+                    earnedBadges = JSON.parse(savedBadges);
+                }
+            }
+        }
+        
+        function goToNextProgressPage() {
+            const subjects = Object.keys(subjectMeta);
+            const maxPage = Math.ceil(subjects.length / PROGRESS_PER_PAGE) || 1;
+            if (currentProgressPage < maxPage) {
+                currentProgressPage++;
+                renderProgress(subjects, buildMatrix());
+            }
         }
 
         // Initialize
         window.onload = () => {
+            loadGamificationState(); // Load saved points and progress
             updateTimerDisplay();
+            loadStudySessionsFromStorage();
+            loadAcceptedSchedule(); // Load saved schedule
             loadInitialData();
+            // Ensure there's at least one busy slot row visible
+            if (!document.getElementById('busySlotsContainer').children.length) addBusySlotRow();
+            // Initialize study dropdown
+            updateStudySessionDropdown();
+            // Initialize gamification
+            renderChallenges();
+            renderBadges();
+            // Load points from localStorage
+            const savedPoints = localStorage.getItem(`totalPoints_${currentUserId}`);
+            if (savedPoints) totalPoints = parseInt(savedPoints);
+            const savedPomodoros = localStorage.getItem(`todayPomodoros_${currentUserId}`);
+            if (savedPomodoros) todayPomodoroCount = parseInt(savedPomodoros);
         };
     </script>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
 </body>
 </html>
