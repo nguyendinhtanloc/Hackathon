@@ -1,0 +1,15 @@
+# AWS Rekognition Configuration Template
+# Copy this file to aws.properties and fill in your actual credentials
+
+aws.access.key.id=YOUR_AWS_ACCESS_KEY_ID
+aws.secret.access.key=YOUR_AWS_SECRET_ACCESS_KEY
+aws.region=us-east-1
+
+# How to get AWS credentials:
+# 1. Go to AWS Console: https://console.aws.amazon.com/iam/
+# 2. Create IAM user with AmazonRekognitionFullAccess policy
+# 3. Create Access Key for that user
+# 4. Copy Access Key ID and Secret Access Key here
+# 5. Rename this file from aws.properties.template to aws.properties
+#
+# See AWS_REKOGNITION_SETUP.md for detailed instructions

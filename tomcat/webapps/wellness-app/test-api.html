@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Wellness Module</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        pre {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Wellness API Testing</h1>
+
+    <div class="test-section">
+        <h2>1. Test Check-in API</h2>
+        <button onclick="testCheckin()">POST /api/wellness/checkin</button>
+        <pre id="checkin-result">Click button to test...</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test Dashboard API</h2>
+        <button onclick="testDashboard()">GET /api/wellness/dashboard/1</button>
+        <pre id="dashboard-result">Click button to test...</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Mood Trend API</h2>
+        <button onclick="testMoodTrend()">GET /api/wellness/mood-trend/1</button>
+        <pre id="trend-result">Click button to test...</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test Wellness Score API</h2>
+        <button onclick="testWellnessScore()">GET /api/wellness/score/1</button>
+        <pre id="score-result">Click button to test...</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Simulate Multiple Check-ins</h2>
+        <button onclick="simulateMultipleCheckins()">Create 7 Days of Data</button>
+        <pre id="simulate-result">Click button to simulate...</pre>
+    </div>
+
+    <script>
+        const API_BASE = '/wellness-app/api/wellness';
+
+        async function testCheckin() {
+            const result = document.getElementById('checkin-result');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/checkin`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: 1,
+                        heartRate: 72,
+                        hrv: 65,
+                        stressScore: 35,
+                        emotion: 'happy',
+                        emoji: '😊',
+                        note: 'Test from API tester'
+                    })
+                });
+
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+                result.className = response.ok ? 'success' : 'error';
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'error';
+            }
+        }
+
+        async function testDashboard() {
+            const result = document.getElementById('dashboard-result');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/dashboard/1`);
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+                result.className = response.ok ? 'success' : 'error';
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'error';
+            }
+        }
+
+        async function testMoodTrend() {
+            const result = document.getElementById('trend-result');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/mood-trend/1`);
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+                result.className = response.ok ? 'success' : 'error';
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'error';
+            }
+        }
+
+        async function testWellnessScore() {
+            const result = document.getElementById('score-result');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/score/1`);
+                const data = await response.json();
+                result.textContent = JSON.stringify(data, null, 2);
+                result.className = response.ok ? 'success' : 'error';
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+                result.className = 'error';
+            }
+        }
+
+        async function simulateMultipleCheckins() {
+            const result = document.getElementById('simulate-result');
+            result.textContent = 'Creating test data...\n';
+
+            const testData = [
+                { hr: 70, hrv: 80, stress: 25, emotion: 'happy', emoji: '😊' },
+                { hr: 75, hrv: 70, stress: 30, emotion: 'happy', emoji: '😊' },
+                { hr: 72, hrv: 75, stress: 28, emotion: 'neutral', emoji: '😐' },
+                { hr: 80, hrv: 60, stress: 40, emotion: 'neutral', emoji: '😐' },
+                { hr: 85, hrv: 55, stress: 50, emotion: 'stressed', emoji: '😰' },
+                { hr: 78, hrv: 65, stress: 35, emotion: 'happy', emoji: '😊' },
+                { hr: 73, hrv: 72, stress: 32, emotion: 'happy', emoji: '😊' }
+            ];
+
+            let successCount = 0;
+            
+            for (let i = 0; i < testData.length; i++) {
+                try {
+                    const data = testData[i];
+                    const response = await fetch(`${API_BASE}/checkin`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userId: 1,
+                            heartRate: data.hr,
+                            hrv: data.hrv,
+                            stressScore: data.stress,
+                            emotion: data.emotion,
+                            emoji: data.emoji,
+                            note: `Simulated check-in day ${i + 1}`
+                        })
+                    });
+
+                    if (response.ok) {
+                        successCount++;
+                        result.textContent += `✓ Day ${i + 1}: HR=${data.hr}, HRV=${data.hrv}, Stress=${data.stress}\n`;
+                    } else {
+                        result.textContent += `✗ Day ${i + 1}: Failed\n`;
+                    }
+
+                    // Small delay between requests
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                } catch (error) {
+                    result.textContent += `✗ Day ${i + 1}: Error - ${error.message}\n`;
+                }
+            }
+
+            result.textContent += `\n✅ Created ${successCount}/${testData.length} check-ins successfully!`;
+            result.className = 'success';
+        }
+    </script>
+</body>
+</html>
