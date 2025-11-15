@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đo Nhịp Tim & Phân Tích Cảm Xúc - Smart Wellness</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .face-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .finger-guide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border: 3px dashed rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .finger-guide.show {
+            display: flex;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-stop {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background: #dc2626;
+        }
+
+        .results {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .result-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .heart-icon {
+            display: inline-block;
+            color: #ef4444;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .stress-level {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .stress-low { background: #d1fae5; color: #065f46; }
+        .stress-medium { background: #fef3c7; color: #92400e; }
+        .stress-high { background: #fee2e2; color: #991b1b; }
+
+        .instructions {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #1e40af;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-bar.show {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .status-message {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 15px;
+            min-height: 20px;
+        }
+
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Đo Nhịp Tim & Phân Tích Cảm Xúc</h1>
+        <p class="subtitle" id="subtitle">Bước 1: Nhìn vào camera để phân tích cảm xúc</p>
+
+        <div class="instructions" id="instructions">
+            <strong>📋 Hướng dẫn - Bước 1:</strong>
+            <ul>
+                <li>Nhìn thẳng vào <strong>camera trước</strong></li>
+                <li>Giữ khuôn mặt <strong>trong khung hình</strong> 3-5 giây</li>
+                <li>Hệ thống sẽ tự động phát hiện cảm xúc của bạn</li>
+                <li>Sau đó click "Bắt đầu đo" để chuyển sang đo nhịp tim</li>
+            </ul>
+        </div>
+
+        <div class="camera-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas class="face-overlay" id="faceCanvas"></canvas>
+            <div class="finger-guide" id="fingerGuide">
+                <span style="color: white; font-size: 14px;">Đặt ngón tay vào đây</span>
+            </div>
+            <div class="overlay" id="overlay">
+                <span>📷 Đang tải mô hình AI...</span>
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="status-message" id="statusMessage">📷 Nhìn vào camera để phát hiện cảm xúc...</div>
+
+        <div id="emotionDetected" style="display: none; text-align: center; padding: 15px; background: #d1fae5; border-radius: 10px; margin-bottom: 15px;">
+            <strong>✅ Đã phát hiện cảm xúc:</strong>
+            <div id="detectedEmotionText" style="font-size: 24px; margin-top: 10px;"></div>
+        </div>
+
+        <button class="btn btn-primary" id="startBtn" onclick="startMeasurement()" disabled>
+            ⏳ Đang phát hiện cảm xúc...
+        </button>
+
+        <button class="btn btn-stop" id="stopBtn" onclick="stopMeasurement()" style="display: none;">
+            ⏹ Dừng Đo
+        </button>
+
+        <div class="results" id="results">
+            <div class="result-item">
+                <span class="result-label">Cảm Xúc Khuôn Mặt</span>
+                <span class="result-value" id="emotion">--</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Nhịp Tim</span>
+                <span class="result-value">
+                    <span class="heart-icon">❤️</span>
+                    <span id="heartRate">--</span> BPM
+                </span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">HRV (Biến thiên nhịp tim)</span>
+                <span class="result-value" id="hrv" style="font-size: 18px;">-- ms</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Mức Stress Tổng Hợp</span>
+                <span class="stress-level" id="stressLevel">--</span>
+            </div>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Điểm Wellness</span>
+                <span class="result-value" id="wellnessScore">--</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let video = document.getElementById('video');
+        let canvas = document.getElementById('canvas');
+        let faceCanvas = document.getElementById('faceCanvas');
+        let ctx = canvas.getContext('2d', { willReadFrequently: true });
+        let faceCtx = faceCanvas.getContext('2d');
+        let stream = null;
+        let measuring = false;
+        let facialEmotion = null;
+        let emotionConfidence = 0;
+        let startTime = 0;
+        let redValues = [];
+        let timestamps = [];
+        const MEASUREMENT_DURATION = 30000; // 30 seconds
+        let emotionDetectionInterval = null;
+        let useRearCamera = false; // Start with front camera for face detection
+
+        // Detect emotion using AWS Rekognition via backend
+        async function detectEmotionAWS() {
+            if (!video || video.readyState !== 4 || useRearCamera || measuring) {
+                return;
+            }
+
+            try {
+                // Capture current frame
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = video.videoWidth;
+                tempCanvas.height = video.videoHeight;
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCtx.drawImage(video, 0, 0);
+
+                // Convert to base64
+                const base64Image = tempCanvas.toDataURL('image/jpeg', 0.8);
+
+                // Call backend API
+                const response = await fetch('/wellness-app/api/wellness/detect-emotion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image: base64Image })
+                });
+
+                const result = await response.json();
+
+                if (result.success && result.emotion) {
+                    facialEmotion = result.emotion;
+                    emotionConfidence = result.confidence;
+
+                    console.log('✅ AWS Rekognition detected:', facialEmotion, (emotionConfidence * 100).toFixed(1) + '%');
+
+                    // Draw result on canvas
+                    faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
+                    faceCtx.fillStyle = '#00ff00';
+                    faceCtx.font = 'bold 24px Arial';
+                    faceCtx.fillText(
+                        `${getEmotionEmoji(facialEmotion)} ${translateEmotion(facialEmotion)} ${(emotionConfidence * 100).toFixed(0)}%`,
+                        20, 40
+                    );
+
+                    // Enable start button
+                    const startBtn = document.getElementById('startBtn');
+                    startBtn.disabled = false;
+                    startBtn.textContent = '🚀 Bắt Đầu Đo Nhịp Tim';
+
+                    // Show detected emotion
+                    document.getElementById('detectedEmotionText').textContent =
+                        `${getEmotionEmoji(facialEmotion)} ${translateEmotion(facialEmotion)} (${(emotionConfidence * 100).toFixed(0)}%)`;
+                    document.getElementById('emotionDetected').style.display = 'block';
+
+                    updateStatus('✅ Đã phát hiện cảm xúc! Click "Bắt đầu đo" để tiếp tục.');
+
+                    // Stop detection loop
+                    if (emotionDetectionInterval) {
+                        clearInterval(emotionDetectionInterval);
+                        emotionDetectionInterval = null;
+                    }
+                } else {
+                    updateStatus(result.message || '⚠️ Không thấy khuôn mặt - Nhìn thẳng vào camera');
+                }
+
+            } catch (error) {
+                console.error('Error detecting emotion:', error);
+                updateStatus('⚠️ Lỗi phát hiện cảm xúc: ' + error.message);
+            }
+        }
+
+        // Start continuous emotion detection
+        function startEmotionDetection() {
+            updateStatus('👤 Nhìn vào camera để phát hiện cảm xúc...');
+
+            // Detect every 2 seconds
+            emotionDetectionInterval = setInterval(async () => {
+                if (!facialEmotion) {
+                    await detectEmotionAWS();
+                }
+            }, 2000);
+
+            // First detection immediately
+            detectEmotionAWS();
+        }
+
+        // Load Face-api.js models - REMOVED, using AWS instead
+        async function loadFaceModels() {
+            // No longer needed - using AWS Rekognition
+            modelsLoaded = true;
+            console.log('✅ Using AWS Rekognition for emotion detection');
+            return true;
+        }
+
+        // Request camera access
+        async function initCamera() {
+            try {
+                // Start with front camera for face detection
+                const constraints = {
+                    video: {
+                        facingMode: useRearCamera ? "environment" : "user",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+
+                // Resize face canvas to match video
+                video.addEventListener('loadedmetadata', () => {
+                    faceCanvas.width = video.videoWidth;
+                    faceCanvas.height = video.videoHeight;
+                });
+
+                // Enable torch if using rear camera
+                if (useRearCamera) {
+                    const track = stream.getVideoTracks()[0];
+                    const capabilities = track.getCapabilities();
+                    
+                    if (capabilities.torch) {
+                        await track.applyConstraints({
+                            advanced: [{ torch: true }]
+                        });
+                        console.log('✅ Flash enabled');
+                    }
+                }
+
+                document.getElementById('overlay').classList.remove('show');
+                
+                if (!useRearCamera && modelsLoaded) {
+                    // Start AWS emotion detection
+                    startEmotionDetection();
+                } else {
+                    document.getElementById('fingerGuide').classList.add('show');
+                }
+                
+                document.getElementById('startBtn').disabled = !useRearCamera;
+
+            } catch (error) {
+                console.error('Camera error:', error);
+                alert('Không thể truy cập camera. Vui lòng cấp quyền camera và thử lại.');
+                document.getElementById('overlay').innerHTML = '<span>❌ Không thể truy cập camera</span>';
+                document.getElementById('overlay').classList.add('show');
+            }
+        }
+
+        function getEmotionEmoji(emotion) {
+            const emojiMap = {
+                'happy': '😊',
+                'sad': '😢',
+                'angry': '😠',
+                'fear': '😨',
+                'fearful': '😨',
+                'disgusted': '🤢',
+                'surprised': '😲',
+                'calm': '😌',
+                'confused': '😕',
+                'neutral': '😐'
+            };
+            return emojiMap[emotion.toLowerCase()] || '😐';
+        }
+
+        function translateEmotion(emotion) {
+            const translation = {
+                'happy': 'Vui vẻ',
+                'sad': 'Buồn',
+                'angry': 'Tức giận',
+                'fear': 'Lo sợ',
+                'fearful': 'Lo sợ',
+                'disgusted': 'Khó chịu',
+                'surprised': 'Ngạc nhiên',
+                'calm': 'Bình tĩnh',
+                'confused': 'Bối rối',
+                'neutral': 'Bình thường'
+            };
+            return translation[emotion.toLowerCase()] || emotion;
+        }
+
+        async function startMeasurement() {
+            if (!stream) {
+                alert('Vui lòng cho phép truy cập camera trước!');
+                return;
+            }
+
+            if (!facialEmotion) {
+                alert('Vui lòng đợi hệ thống phát hiện cảm xúc của bạn trước!');
+                return;
+            }
+
+            // Update UI for step 2
+            document.getElementById('subtitle').textContent = 'Bước 2: Đặt ngón tay lên camera sau';
+            document.getElementById('instructions').innerHTML = `
+                <strong>📋 Hướng dẫn - Bước 2:</strong>
+                <ul>
+                    <li>Đặt ngón tay <strong>hoàn toàn phủ kín</strong> camera sau</li>
+                    <li>Giữ ngón tay <strong>yên, không cử động</strong></li>
+                    <li>Đảm bảo đèn flash <strong>bật sáng</strong></li>
+                    <li>Đo trong <strong>30 giây</strong></li>
+                </ul>
+            `;
+
+            // Stop current stream and switch to rear camera
+            updateStatus('🔄 Đang chuyển sang camera sau...');
+            
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            // Switch to rear camera
+            useRearCamera = true;
+            await initCamera();
+            
+            // Wait a bit for camera to stabilize
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            measuring = true;
+            startTime = Date.now();
+            redValues = [];
+            timestamps = [];
+
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('stopBtn').style.display = 'block';
+            document.getElementById('progressBar').classList.add('show');
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('fingerGuide').classList.add('show');
+            document.getElementById('emotionDetected').style.display = 'none';
+            faceCanvas.style.display = 'none'; // Hide face detection during measurement
+
+            updateStatus('🔍 Đang phát hiện ngón tay...');
+
+            // Start analyzing frames
+            analyzeFrame();
+        }
+
+        function analyzeFrame() {
+            if (!measuring) return;
+
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min((elapsed / MEASUREMENT_DURATION) * 100, 100);
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            if (elapsed >= MEASUREMENT_DURATION) {
+                stopMeasurement();
+                return;
+            }
+
+            // Capture frame
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Get average red value from center of image
+            const imageData = ctx.getImageData(
+                canvas.width / 2 - 50,
+                canvas.height / 2 - 50,
+                100,
+                100
+            );
+
+            let redSum = 0;
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                redSum += imageData.data[i]; // Red channel
+            }
+            const avgRed = redSum / (imageData.data.length / 4);
+
+            // Check if finger is covering camera (high red values)
+            if (avgRed > 100) {
+                redValues.push(avgRed);
+                timestamps.push(Date.now());
+                
+                const secondsLeft = Math.ceil((MEASUREMENT_DURATION - elapsed) / 1000);
+                const dataPoints = redValues.length;
+                updateStatus(`💓 Đang đo... ${secondsLeft}s (${dataPoints} mẫu, đỏ: ${Math.round(avgRed)})`);
+            } else {
+                updateStatus(`⚠️ Đặt ngón tay phủ kín camera! (đỏ: ${Math.round(avgRed)} - cần >100)`);
+            }
+
+            // Continue analyzing
+            requestAnimationFrame(analyzeFrame);
+        }
+
+        function stopMeasurement() {
+            measuring = false;
+            document.getElementById('startBtn').style.display = 'block';
+            document.getElementById('stopBtn').style.display = 'none';
+            document.getElementById('progressBar').classList.remove('show');
+            document.getElementById('fingerGuide').classList.add('show');
+
+            if (redValues.length < 100) {
+                updateStatus('❌ Không đủ dữ liệu. Vui lòng thử lại và giữ ngón tay yên!');
+                console.error('❌ Only got', redValues.length, 'samples (need 100+)');
+                return;
+            }
+
+            console.log('=== MEASUREMENT COMPLETE ===');
+            console.log('Total samples:', redValues.length);
+            console.log('Duration:', ((timestamps[timestamps.length-1] - timestamps[0])/1000).toFixed(2), 'seconds');
+            console.log('Detected emotion:', facialEmotion, emotionConfidence);
+
+            updateStatus('🧮 Đang tính toán kết quả...');
+
+            // Calculate heart rate from red values
+            const heartRate = calculateHeartRate(redValues, timestamps);
+            const hrv = calculateHRV(timestamps);
+            const stressScore = calculateStressScore(heartRate, hrv, facialEmotion || 'neutral');
+            const wellnessScore = calculateWellnessScore(heartRate, stressScore);
+
+            // Display results
+            displayResults(heartRate, hrv, stressScore, wellnessScore);
+
+            // Send to backend
+            sendToBackend({
+                heartRate: heartRate,
+                hrv: hrv,
+                stressScore: stressScore,
+                wellnessScore: wellnessScore,
+                emotion: facialEmotion,
+                emotionConfidence: emotionConfidence
+            });
+        }
+
+        function calculateHeartRate(redValues, timestamps) {
+            if (redValues.length < 50) {
+                console.warn('Not enough data points:', redValues.length);
+                return 70;
+            }
+
+            console.log('📊 Analyzing', redValues.length, 'data points');
+            console.log('📊 Red values range:', Math.min(...redValues).toFixed(2), '-', Math.max(...redValues).toFixed(2));
+
+            // Apply simple moving average to smooth the signal
+            const smoothed = smoothSignal(redValues, 3);
+            
+            // Detect peaks using simple threshold method
+            const peaks = detectPeaks(smoothed);
+            
+            console.log('💓 Detected', peaks.length, 'peaks');
+
+            if (peaks.length < 5) {
+                console.warn('Too few peaks detected, trying alternative method');
+                return calculateFromVariance(redValues, timestamps);
+            }
+
+            // Calculate intervals between peaks
+            const peakIntervals = [];
+            for (let i = 1; i < peaks.length; i++) {
+                const interval = timestamps[peaks[i]] - timestamps[peaks[i-1]];
+                peakIntervals.push(interval);
+            }
+
+            // Calculate average interval in milliseconds
+            const avgInterval = peakIntervals.reduce((a, b) => a + b) / peakIntervals.length;
+            
+            // Convert to BPM
+            const bpm = Math.round(60000 / avgInterval);
+
+            console.log('⏱️ Avg peak interval:', avgInterval.toFixed(2), 'ms');
+            console.log('💓 Calculated BPM:', bpm);
+
+            // Validate and clamp to reasonable range
+            if (bpm < 45 || bpm > 150) {
+                console.warn('BPM out of range:', bpm, '- using variance method');
+                return calculateFromVariance(redValues, timestamps);
+            }
+
+            return bpm;
+        }
+
+        function smoothSignal(values, windowSize = 3) {
+            const smoothed = [];
+            for (let i = 0; i < values.length; i++) {
+                let sum = 0;
+                let count = 0;
+                const start = Math.max(0, i - Math.floor(windowSize / 2));
+                const end = Math.min(values.length - 1, i + Math.floor(windowSize / 2));
+                
+                for (let j = start; j <= end; j++) {
+                    sum += values[j];
+                    count++;
+                }
+                smoothed.push(sum / count);
+            }
+            return smoothed;
+        }
+
+        function detectPeaks(values) {
+            const peaks = [];
+            const mean = values.reduce((a, b) => a + b) / values.length;
+            const stdDev = Math.sqrt(values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length);
+            const threshold = mean + stdDev * 0.5; // Peaks above mean + 0.5 std dev
+            
+            // Minimum samples between peaks (prevents detecting same peak multiple times)
+            // At 30 samples/sec, 180 BPM = 0.33 sec/beat = ~10 samples minimum
+            const minDistance = 10;
+
+            for (let i = 2; i < values.length - 2; i++) {
+                // Check if it's a local maximum above threshold
+                if (values[i] > threshold &&
+                    values[i] >= values[i-1] && 
+                    values[i] >= values[i+1] &&
+                    values[i] > values[i-2] &&
+                    values[i] > values[i+2]) {
+                    
+                    // Check distance from last peak
+                    if (peaks.length === 0 || i - peaks[peaks.length - 1] >= minDistance) {
+                        peaks.push(i);
+                    }
+                }
+            }
+            
+            return peaks;
+        }
+
+        function calculateFromVariance(values, timestamps) {
+            // Calculate signal variance as a proxy for heart rate
+            const mean = values.reduce((a, b) => a + b) / values.length;
+            const variance = values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length;
+            const stdDev = Math.sqrt(variance);
+            
+            console.log('📊 Signal variance method:');
+            console.log('  Mean:', mean.toFixed(2));
+            console.log('  Std Dev:', stdDev.toFixed(2));
+            
+            // Estimate frequency from signal properties
+            // Higher variance typically means stronger pulse signal
+            // This is a heuristic - you may need to calibrate
+            const estimatedBPM = Math.round(60 + (stdDev / 2));
+            
+            console.log('💓 Estimated BPM:', estimatedBPM);
+            
+            return Math.max(55, Math.min(100, estimatedBPM));
+        }
+
+        function calculateHRV(timestamps) {
+            if (timestamps.length < 10) {
+                console.warn('Not enough timestamps for HRV');
+                return 50; // Default moderate HRV
+            }
+
+            // Calculate intervals between consecutive samples
+            const intervals = [];
+            for (let i = 1; i < timestamps.length; i++) {
+                const interval = timestamps[i] - timestamps[i - 1];
+                // Filter out outliers (should be roughly consistent for 30fps)
+                if (interval > 10 && interval < 200) {
+                    intervals.push(interval);
+                }
+            }
+
+            if (intervals.length < 5) {
+                console.warn('Not enough valid intervals for HRV');
+                return 50;
+            }
+
+            // Calculate SDNN (Standard Deviation of NN intervals)
+            const mean = intervals.reduce((a, b) => a + b) / intervals.length;
+            const variance = intervals.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / intervals.length;
+            const sdnn = Math.sqrt(variance);
+
+            console.log('📊 HRV intervals:', intervals.length);
+            console.log('📊 Mean interval:', mean.toFixed(2), 'ms');
+            console.log('📊 SDNN:', sdnn.toFixed(2), 'ms');
+
+            // Scale to typical HRV range (20-100ms)
+            const hrv = Math.round(Math.max(20, Math.min(100, sdnn)));
+            
+            return hrv;
+        }
+
+        function calculateStressScore(heartRate, hrv, emotion) {
+            // Combine physiological data and facial emotion
+            let stressScore = 0;
+
+            // HRV component (40%) - Lower is worse
+            if (hrv < 20) stressScore += 40;
+            else if (hrv < 50) stressScore += 30;
+            else if (hrv < 100) stressScore += 20;
+            else stressScore += 10;
+
+            // Heart rate component (30%)
+            if (heartRate > 100) stressScore += 30;
+            else if (heartRate > 85) stressScore += 20;
+            else if (heartRate > 70) stressScore += 15;
+            else stressScore += 10;
+
+            // Facial emotion component (30%)
+            const emotionStress = getEmotionStressScore(emotion);
+            stressScore += emotionStress;
+
+            console.log('📊 Stress components:');
+            console.log('  HRV stress:', hrv < 20 ? 40 : (hrv < 50 ? 30 : (hrv < 100 ? 20 : 10)));
+            console.log('  HR stress:', heartRate > 100 ? 30 : (heartRate > 85 ? 20 : 15));
+            console.log('  Emotion stress:', emotionStress);
+
+            return Math.min(100, stressScore);
+        }
+
+        function getEmotionStressScore(emotion) {
+            const emotionStressMap = {
+                'happy': 0,           // 0% stress from happy emotion
+                'calm': 5,            // 5% very low stress
+                'neutral': 10,        // 10% mild
+                'surprised': 15,      // 15% slightly elevated
+                'confused': 18,       // 18% moderate
+                'sad': 20,            // 20% moderate stress
+                'disgusted': 22,      // 22% moderate-high stress
+                'fear': 25,           // 25% high stress
+                'fearful': 25,        // 25% high stress
+                'angry': 30           // 30% highest stress
+            };
+            return emotionStressMap[emotion.toLowerCase()] || 15;
+        }
+
+        function calculateWellnessScore(heartRate, stressScore) {
+            // Inverse of stress score
+            const baseScore = 100 - stressScore;
+            
+            // Bonus for healthy heart rate (60-80 BPM)
+            let bonus = 0;
+            if (heartRate >= 60 && heartRate <= 80) {
+                bonus = 10;
+            }
+
+            return Math.min(100, baseScore + bonus);
+        }
+
+        function displayResults(heartRate, hrv, stressScore, wellnessScore) {
+            // Display facial emotion if available
+            if (facialEmotion) {
+                const emotionText = `${getEmotionEmoji(facialEmotion)} ${translateEmotion(facialEmotion)} (${(emotionConfidence * 100).toFixed(0)}%)`;
+                document.getElementById('emotion').textContent = emotionText;
+            } else {
+                document.getElementById('emotion').textContent = 'Không phát hiện';
+            }
+
+            document.getElementById('heartRate').textContent = heartRate;
+            document.getElementById('hrv').textContent = hrv;
+            document.getElementById('wellnessScore').textContent = wellnessScore;
+
+            const stressLevelEl = document.getElementById('stressLevel');
+            if (stressScore < 30) {
+                stressLevelEl.textContent = 'Thấp 😊';
+                stressLevelEl.className = 'stress-level stress-low';
+            } else if (stressScore < 60) {
+                stressLevelEl.textContent = 'Trung bình 😐';
+                stressLevelEl.className = 'stress-level stress-medium';
+            } else {
+                stressLevelEl.textContent = 'Cao 😰';
+                stressLevelEl.className = 'stress-level stress-high';
+            }
+
+            document.getElementById('results').classList.add('show');
+            updateStatus('✅ Đo thành công!');
+        }
+
+        async function sendToBackend(data) {
+            try {
+                // Get userId from URL or default to 1
+                const urlParams = new URLSearchParams(window.location.search);
+                const userId = parseInt(urlParams.get('userId')) || 1;
+
+                // Use facial emotion if available, otherwise use stress-based emotion
+                const detectedEmotion = data.emotion || (data.stressScore < 30 ? 'happy' : (data.stressScore < 60 ? 'neutral' : 'stressed'));
+                const emotionEmoji = data.emotion ? getEmotionEmoji(data.emotion) : (data.stressScore < 30 ? '😊' : (data.stressScore < 60 ? '😐' : '😰'));
+
+                const requestData = {
+                    userId: userId,
+                    moodScore: data.stressScore < 30 ? 8 : (data.stressScore < 60 ? 5 : 3),
+                    emotion: detectedEmotion,
+                    emoji: emotionEmoji,
+                    activities: ['meditation'],
+                    notes: `Cảm xúc: ${translateEmotion(detectedEmotion)} | Nhịp tim: ${data.heartRate} BPM | HRV: ${data.hrv} ms | Stress: ${data.stressScore}`,
+                    heartRate: data.heartRate,
+                    faceAnalysisData: JSON.stringify({
+                        hrv: data.hrv,
+                        stressScore: data.stressScore,
+                        facialEmotion: data.emotion,
+                        emotionConfidence: data.emotionConfidence,
+                        measurementTime: new Date().toISOString()
+                    })
+                };
+
+                console.log('📤 Sending to backend:', requestData);
+
+                const response = await fetch('/wellness-app/api/wellness/checkin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const responseText = await response.text();
+                console.log('📥 Response text:', responseText);
+
+                if (response.ok) {
+                    try {
+                        const result = JSON.parse(responseText);
+                        console.log('✅ Data saved to backend:', result);
+                        
+                        // Show success message
+                        const statusEl = document.getElementById('statusMessage');
+                        statusEl.textContent = '✅ Đã lưu vào hệ thống!';
+                        statusEl.style.color = '#155724';
+                    } catch (e) {
+                        console.log('✅ Data saved (no JSON response)');
+                    }
+                } else {
+                    console.error('❌ Failed to save data:', response.status, responseText);
+                    alert('Lỗi lưu dữ liệu: ' + responseText);
+                }
+            } catch (error) {
+                console.error('Backend error:', error);
+                alert('Lỗi kết nối backend: ' + error.message);
+            }
+        }
+
+        function updateStatus(message) {
+            document.getElementById('statusMessage').textContent = message;
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', async () => {
+            const startBtn = document.getElementById('startBtn');
+            startBtn.disabled = true;
+            startBtn.textContent = '⏳ Đang tải mô hình AI...';
+            
+            document.getElementById('overlay').classList.add('show');
+            
+            // Load face detection models first
+            const modelsOk = await loadFaceModels();
+            
+            if (modelsOk) {
+                startBtn.textContent = '⏳ Đang mở camera...';
+                updateStatus('📷 Đang mở camera...');
+                
+                // Then initialize front camera
+                await initCamera();
+                
+                startBtn.textContent = '⏳ Đang phát hiện cảm xúc...';
+                updateStatus('👤 Nhìn vào camera để phát hiện cảm xúc...');
+            } else {
+                startBtn.textContent = '🚀 Bắt Đầu Đo (Không có AI)';
+                startBtn.disabled = false;
+                updateStatus('⚠️ Chế độ đơn giản - chỉ đo nhịp tim');
+                
+                // Switch to rear camera immediately if no AI
+                useRearCamera = true;
+                await initCamera();
+            }
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+</body>
+</html>

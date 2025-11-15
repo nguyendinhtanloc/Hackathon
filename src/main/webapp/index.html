@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mental Wellness Hub - Hệ thống Sức khỏe Tinh thần</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .user-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .user-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .user-input input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .user-input button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .user-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .current-user {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .current-user.active {
+            display: block;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .module-card.dev1::before {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .module-card.dev2::before {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .module-card.dev3::before {
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .module-card.dev4::before {
+            background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .module-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .module-card h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .module-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .module-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-template {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .module-features {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .module-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .module-features li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .module-features li::before {
+            content: '✓ ';
+            color: #43e97b;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .dashboard {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        .wellness-chart {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .user-input {
+                flex-direction: column;
+            }
+
+            .user-input input,
+            .user-input button {
+                width: 100%;
+            }
+        }
+
+        .btn-action {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+        }
+
+        .quick-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Smart Mental Wellness Hub</h1>
+            <p>Hệ thống Quản lý và Hỗ trợ Sức khỏe Tinh thần Toàn diện cho Sinh viên</p>
+        </div>
+
+        <!-- User Selection Section -->
+        <div class="user-section">
+            <div class="user-input">
+                <input type="number" id="userIdInput" placeholder="Nhập User ID của bạn (ví dụ: 1)" value="1">
+                <button onclick="loadUserDashboard()">📊 Xem Dashboard</button>
+                <button onclick="showModules()">📱 Xem Tất cả Tính năng</button>
+            </div>
+            <div id="currentUser" class="current-user">
+                <strong>👤 User hiện tại:</strong> <span id="currentUserId"></span>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="dashboard">
+            <h2>📊 Dashboard Sức khỏe của bạn</h2>
+            <div id="dashboardContent" class="loading">
+                Đang tải dữ liệu...
+            </div>
+        </div>
+
+        <!-- Modules Grid -->
+        <div id="modulesGrid" class="modules-grid">
+            <!-- DEV 1: Wellness Dashboard -->
+            <div class="module-card dev1" onclick="openWellnessModule()">
+                <div class="module-icon">💚</div>
+                <h2>Wellness Dashboard</h2>
+                <p>Theo dõi sức khỏe tinh thần và thể chất hàng ngày</p>
+                <div class="module-status status-completed">✅ Hoàn thành</div>
+                <div class="module-features">
+                    <ul>
+                        <li>Đo nhịp tim qua camera</li>
+                        <li>Phân tích stress và HRV</li>
+                        <li>Tính điểm wellness tổng hợp</li>
+                        <li>Theo dõi xu hướng tuần</li>
+                    </ul>
+                </div>
+                <div class="quick-actions">
+                    <a href="heart-rate-measurement.html" class="btn-action">🫀 Đo nhịp tim</a>
+                    <a href="test-api.html" class="btn-action">🧪 Test API</a>
+                </div>
+            </div>
+
+            <!-- DEV 2: AI Companion -->
+            <div class="module-card dev2">
+                <div class="module-icon">🤖</div>
+                <h2>AI Companion</h2>
+                <p>Trợ lý AI hỗ trợ tâm lý 24/7</p>
+                <div class="module-status status-template">⏳ Đang phát triển</div>
+                <div class="module-features">
+                    <ul>
+                        <li>Chat tư vấn AI thông minh</li>
+                        <li>Phát hiện khủng hoảng tự động</li>
+                        <li>Thư viện kiến thức wellness</li>
+                        <li>Gợi ý nội dung cá nhân hóa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DEV 3: Community -->
+            <div class="module-card dev3">
+                <div class="module-icon">👥</div>
+                <h2>Peer Support Network</h2>
+                <p>Cộng đồng hỗ trợ đồng đẳng</p>
+                <div class="module-status status-template">⏳ Đang phát triển</div>
+                <div class="module-features">
+                    <ul>
+                        <li>Diễn đàn ẩn danh</li>
+                        <li>Ghép đôi buddy hỗ trợ</li>
+                        <li>Sự kiện workshop/yoga</li>
+                        <li>Nhóm quan tâm chung</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- DEV 4: Academic & Gamification -->
+            <div class="module-card dev4">
+                <div class="module-icon">🎯</div>
+                <h2>Academic Wellness & Gamification</h2>
+                <p>Học tập hiệu quả và động lực trò chơi</p>
+                <div class="module-status status-template">⏳ Đang phát triển</div>
+                <div class="module-features">
+                    <ul>
+                        <li>Lịch học tích hợp wellness</li>
+                        <li>Hệ thống điểm và huy hiệu</li>
+                        <li>Bảng xếp hạng wellness</li>
+                        <li>Thử thách tuần/tháng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/wellness-app/api';
+        let currentUserId = 1;
+
+        // Load user dashboard
+        async function loadUserDashboard() {
+            const userId = document.getElementById('userIdInput').value;
+            if (!userId) {
+                alert('Vui lòng nhập User ID');
+                return;
+            }
+
+            currentUserId = userId;
+            document.getElementById('currentUserId').textContent = userId;
+            document.getElementById('currentUser').classList.add('active');
+            
+            const dashboard = document.getElementById('dashboard');
+            const modulesGrid = document.getElementById('modulesGrid');
+            const dashboardContent = document.getElementById('dashboardContent');
+
+            dashboard.classList.add('active');
+            modulesGrid.style.display = 'none';
+            dashboardContent.innerHTML = '<div class="loading">Đang tải dữ liệu...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/wellness/dashboard/${userId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayDashboard(data.data);
+                } else {
+                    dashboardContent.innerHTML = `
+                        <div class="error">
+                            <strong>Chưa có dữ liệu!</strong><br>
+                            Bạn chưa thực hiện check-in nào. Hãy bắt đầu bằng cách đo nhịp tim nhé!
+                        </div>
+                        <div class="quick-actions">
+                            <a href="heart-rate-measurement.html?userId=${userId}" class="btn-action">🫀 Đo nhịp tim ngay</a>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                dashboardContent.innerHTML = `
+                    <div class="error">
+                        <strong>Lỗi kết nối!</strong><br>
+                        Không thể tải dữ liệu. Vui lòng kiểm tra server đang chạy.
+                    </div>
+                `;
+            }
+        }
+
+        function displayDashboard(data) {
+            const dashboardContent = document.getElementById('dashboardContent');
+            
+            const latestCheckin = data.latestCheckin || {};
+            const wellnessScore = data.wellnessScore || {};
+            const stats = data.stats || {};
+
+            const html = `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>${wellnessScore.score || 0}</h3>
+                        <p>Wellness Score</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${latestCheckin.heartRate || '--'}</h3>
+                        <p>Nhịp tim (BPM)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${stats.averageStressScore ? stats.averageStressScore.toFixed(1) : '--'}</h3>
+                        <p>Stress trung bình</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${stats.checkInStreak || 0}</h3>
+                        <p>Chuỗi check-in (ngày)</p>
+                    </div>
+                </div>
+
+                <div class="wellness-chart">
+                    <h3>📈 Xu hướng tuần này</h3>
+                    ${renderWeeklyTrend(data.weeklyTrend || [])}
+                </div>
+
+                <div class="wellness-chart" style="margin-top: 20px;">
+                    <h3>💡 Thông tin mới nhất</h3>
+                    <p><strong>Tâm trạng:</strong> ${getMoodEmoji(latestCheckin.moodScore)} ${latestCheckin.moodScore || '--'}/10</p>
+                    <p><strong>HRV:</strong> ${latestCheckin.faceAnalysisData ? JSON.parse(latestCheckin.faceAnalysisData).hrv : '--'} ms</p>
+                    <p><strong>Cập nhật lần cuối:</strong> ${latestCheckin.checkinDate ? new Date(latestCheckin.checkinDate).toLocaleString('vi-VN') : 'Chưa có'}</p>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="heart-rate-measurement.html?userId=${currentUserId}" class="btn-action">🫀 Check-in mới</a>
+                    <a href="test-api.html" class="btn-action">📊 Xem chi tiết</a>
+                    <button class="btn-action" onclick="showModules()">📱 Các tính năng khác</button>
+                </div>
+            `;
+
+            dashboardContent.innerHTML = html;
+        }
+
+        function renderWeeklyTrend(weeklyTrend) {
+            if (!weeklyTrend || weeklyTrend.length === 0) {
+                return '<p style="color: #666;">Chưa có dữ liệu đủ để hiển thị xu hướng</p>';
+            }
+
+            const max = Math.max(...weeklyTrend.map(d => d.score || 0));
+            const html = weeklyTrend.map(day => {
+                const score = day.score || 0;
+                const height = max > 0 ? (score / max * 100) : 0;
+                return `
+                    <div style="display: inline-block; width: 12%; text-align: center; margin: 0 1%;">
+                        <div style="height: 100px; display: flex; align-items: flex-end; justify-content: center;">
+                            <div style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: ${height}%; border-radius: 5px 5px 0 0; min-height: 5px;"></div>
+                        </div>
+                        <div style="margin-top: 5px; font-size: 0.8em; color: #666;">${new Date(day.date).toLocaleDateString('vi-VN', {month: 'numeric', day: 'numeric'})}</div>
+                        <div style="font-weight: bold; color: #333;">${score.toFixed(0)}</div>
+                    </div>
+                `;
+            }).join('');
+
+            return `<div style="margin-top: 15px;">${html}</div>`;
+        }
+
+        function getMoodEmoji(score) {
+            if (!score) return '😐';
+            if (score >= 8) return '😄';
+            if (score >= 6) return '🙂';
+            if (score >= 4) return '😐';
+            if (score >= 2) return '😔';
+            return '😢';
+        }
+
+        function showModules() {
+            document.getElementById('dashboard').classList.remove('active');
+            document.getElementById('modulesGrid').style.display = 'grid';
+        }
+
+        function openWellnessModule() {
+            const userId = document.getElementById('userIdInput').value || 1;
+            window.location.href = `heart-rate-measurement.html?userId=${userId}`;
+        }
+
+        // Auto-load dashboard on page load if user ID exists
+        window.onload = function() {
+            const userId = document.getElementById('userIdInput').value;
+            if (userId) {
+                // Show modules by default
+                showModules();
+            }
+        };
+    </script>
+</body>
+</html>
